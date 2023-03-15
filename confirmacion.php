@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +16,8 @@
 
     <h1>Bien!</h1>
     <p>Te has logueado correctamente.</p>
-    <?php echo "Usuario: " . $_SESSION['usuario'] . "<br>";?>
-    <?php echo "Email: " . $_SESSION['email'] . "<br>"; ?>
+    <?php echo "Usuario: " . $_SESSION['name'] . "<br>";?>
+    <?php echo "Email: " . $_SESSION['email'] . "<br><br>"; ?>
+    <?php echo "Token de sesion: <i>" . $_SESSION['access_token']['access_token'] . "</i><br>"; ?>
 </body>
 </html>

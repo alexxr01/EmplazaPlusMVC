@@ -26,6 +26,10 @@ class GoogleOauthConfig {
     $this->client->setClientSecret($this->client_secret);
     $this->client->setRedirectUri($this->redirect_uri);
     $this->client->addScope('https://www.googleapis.com/auth/userinfo.email');
+    // Se definen los alcances de acceso para la información del perfil y email del usuario
+    $this->client->addScope("email");
+    $this->client->addScope("profile");
+
     $this->obj_res = new Google_Service_Oauth2($this->client);
 
     //Add access token to php session after successfully authenticate
@@ -35,15 +39,19 @@ class GoogleOauthConfig {
       header('Location: ' . filter_var($this->redirect_uri, FILTER_SANITIZE_URL));
     }
 
-    //set token
+    // Seteamos el token
     if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
       $this->client->setAccessToken($_SESSION['access_token']);
     }
-    //store with user data
+
+    // Guardamos los datos del usuario
     if ($this->client->getAccessToken()) {
       $userData = $this->obj_res->userinfo->get();
       if (!empty($userData)) {
         // Insertamos los datos en la sesion
+        session_start();
+        $_SESSION['name'] = $userData->name;
+        $_SESSION['email'] = $userData->email;
       }
       $_SESSION['access_token'] = $this->client->getAccessToken();
     } else {
