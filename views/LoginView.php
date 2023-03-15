@@ -21,8 +21,8 @@
                     <br>
                     <button class="btn btn-dark">Iniciar sesion</button>
                 </form>
-                <!-- Google OAuth -->
-                <?php
+                    <!-- Google OAuth -->
+                    <?php
                         session_start();
                         include_once('oauth/GoogleOauthConfig.php');
                         if(!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
@@ -31,13 +31,19 @@
                     }
                     ?>
 
-                    <?php if (isset($google_auth_url)) ?>
+                    <!-- Iniciar sesión mediante Google OAuth -->
+                    <?php if (isset($google_auth_url)): ?>
                         <form action="<?php echo $google_auth_url; ?>" method="post">
                         <button type="submit" class="btn btn-outline-dark">
                         <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Logueate con Google" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                                 Continuar con Google
                         </button>
                     </form>
+                    <?php else: ?>
+                        <?php
+                        header('Location: '.'confirmacion.php');
+                        ?>
+                    <?php endif ?>
                 <br>
             </div>
         </div>
