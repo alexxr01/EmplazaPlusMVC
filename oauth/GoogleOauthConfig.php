@@ -3,8 +3,7 @@
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 
-class GoogleOauthConfig
-{
+class GoogleOauthConfig {
   private $client_id;
   private $client_secret;
   private $redirect_uri;
@@ -13,8 +12,7 @@ class GoogleOauthConfig
   private $google_auth_url;
   private static $instance_obj;
 
-  private function __construct()
-  {
+  private function __construct() {
     //Traemos una instancia de nuestra clase de configuracion.
     $config = Config::singleton();
     // Set config params to acces Google API

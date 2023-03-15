@@ -1,5 +1,7 @@
 <?php
 $config = Config::singleton();
+// Nombre aplicacion
+$config->set('nombreAplicacion', 'EmplazaPlus');
 // Mapeo enrutado hacia los controladores
 $config->set('controllersFolder', 'controllers/');
 $config->set('modelsFolder', 'models/');
