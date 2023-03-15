@@ -25,6 +25,7 @@
                     <?php
                         session_start();
                         include_once('oauth/GoogleOauthConfig.php');
+                        $_SESSION['usuario'] = $_POST['name'];
                         if(!isset($_SESSION['access_token']) && !$_SESSION['access_token']) {
                         $google_client = GoogleOauthConfig::instance();
                         $google_auth_url = $google_client->getGoogleAuthUrl();

@@ -43,7 +43,7 @@ class GoogleOauthConfig {
     if ($this->client->getAccessToken()) {
       $userData = $this->obj_res->userinfo->get();
       if (!empty($userData)) {
-        //insert data into database
+        // Insertamos los datos en la sesion
       }
       $_SESSION['access_token'] = $this->client->getAccessToken();
     } else {
