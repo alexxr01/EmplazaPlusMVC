@@ -2,7 +2,7 @@
 //Google API PHP Library includes
 require_once 'vendor/autoload.php';
 
-class GoogleOauthConfig{
+class GoogleOauthConfig {
   private $client_id;
   private $client_secret;
   private $redirect_uri;
@@ -10,8 +10,8 @@ class GoogleOauthConfig{
   private $obj_res;
   private $google_auth_url;
   private static $instance_obj;
-  private function __construct()
-  {
+
+  private function __construct() {
     // Set config params to acces Google API
     $this->client_id = '511311237268-n6iumb9u6vdgbvv5p2ppecbqgg9cu9re.apps.googleusercontent.com';
     $this->client_secret = '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';
@@ -44,18 +44,17 @@ class GoogleOauthConfig{
       }
       $_SESSION['access_token'] = $this->client->getAccessToken();
     } else {
-        try{
+        try {
           $this->google_auth_url  =  $this->client->createAuthUrl();
-        }catch(Exception $e){
+        } catch(Exception $e) {
           var_dump($e);
         }
     }
   }
-  public function getGoogleAuthUrl(){
+  public function getGoogleAuthUrl() {
     return $this->google_auth_url;
   }
-  public static function instance()
-  {
+  public static function instance() {
         if (!isset(self::$instance_obj)) {
             $c = __CLASS__;
             self::$instance_obj = new $c;

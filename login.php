@@ -14,7 +14,7 @@
         <?php include_once('views/BarraNavegacion.php') ?>
 
         <?php
-            // Incluimos el EmplazamientoController
+            // Incluimos el LoginController
             // vista->controlador->modelo->vista
             require 'controllers/LoginController.php';
             LoginController::init();
