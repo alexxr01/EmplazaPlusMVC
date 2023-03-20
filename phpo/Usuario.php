@@ -1,7 +1,7 @@
 <?php
 class Usuario
 {
-    public $id;
+    //public $id;
     public $usuario;
     public $correo;
     public $contrasena;
@@ -11,6 +11,7 @@ class Usuario
     public function __construct() {}
 
     // ID
+    /*
     public function setId($id)
     {
         $this->id = $id;
@@ -19,6 +20,7 @@ class Usuario
     {
         return $this->id;
     }
+    */
     // Usuario
     public function setUsuario($usuario)
     {

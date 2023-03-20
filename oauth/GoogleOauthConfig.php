@@ -11,10 +11,13 @@ class GoogleOauthConfig {
   private $obj_res;
   private $google_auth_url;
   private static $instance_obj;
+  protected $db;
 
   private function __construct() {
     //Traemos una instancia de nuestra clase de configuracion.
     $config = Config::singleton();
+    // Necesario para la inserción a la BD.
+    $this->db = SPDO::singleton();
     // Set config params to acces Google API
     $this->client_id = $config->get('google_client_id');
     $this->client_secret = $config->get('google_client_secret');
@@ -48,12 +51,29 @@ class GoogleOauthConfig {
     if ($this->client->getAccessToken()) {
       $userData = $this->obj_res->userinfo->get();
       if (!empty($userData)) {
-        // Insertamos los datos en la sesion
+        // Almacenamos los datos que nos vayan a interesar.
+        $token = $_SESSION['access_token'] = $this->client->getAccessToken();
+        $fecha_concesion = null;
+        $expira = null;
+        // Insertamos los datos en la sesion en la base de datos.
+        try {
+          // Realizamos la consulta de todos los items
+          $stmt = $this->db->prepare("INSERT INTO sesion (`token`, `fecha_concesion`, `expira`) VALUES ('$token', '$fecha_concesion', '$expira');");
+          $stmt->execute([$sesion]);
+          $stmt->setFetchMode(PDO::FETCH_CLASS, "Sesion");
+          $sesion = $stmt->fetch();
+
+      } catch(PDOException $pdoe) {
+          echo $pdoe;
+      }
+
+        /*
         session_start();
         $_SESSION['name'] = $userData->name;
         $_SESSION['email'] = $userData->email;
+        */
       }
-      $_SESSION['access_token'] = $this->client->getAccessToken();
+      
     } else {
       try {
         $this->google_auth_url  =  $this->client->createAuthUrl();
