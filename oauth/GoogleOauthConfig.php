@@ -60,26 +60,31 @@ class GoogleOauthConfig {
         // Si la consulta ha tenido efecto damos paso a realizar un nuevo almacenamiento de sesión.
         // En caso contrario no pasaría nada porque la sesión ya estaría activa al cumplir los requisitos.
         if ($resultadoComprobacion!=1) {
-          // Creamos los objetos de sesiones que nos interesaran
+          // Creamos los objetos de sesiones que nos interesaran.
           $_SESSION['access_token'] = $this->client->getAccessToken();
           $_SESSION['name'] = $userData->name;
           $_SESSION['email'] = $userData->email;
-          // IMPORTANTE, en mi caso quiero dar un tiempo máximo de 5 minutos de token válido.
+          // IMPORTANTE, en mi caso quiero dar un tiempo máximo de 10 minutos de token válido.
           // Por lo que ha sido necesario convertir la hora obtenida y aumentarle los minutos.
           $obtenerFechaActual = date('Y-m-d H:i:s', $this->client->getAccessToken()['expires_at']);
-          $minutos_actuales = date('i', strtotime($obtenerFechaActual)); // Obtenemos solo los minutos.
-          $aumentarMinutos = $minutos_actuales + 10; // Aumentamos 10 minutos.
+          $minutos_actuales = date('i', strtotime($obtenerFechaActual)) + 10; // Obtenemos solo los minutos y aumentamos.
           $expiracion = date('Y-m-d H:' . $aumentarMinutos . ':s', strtotime($obtenerFechaActual)); // Obtenemos la definitiva.
-          // Seguidamente los almacenamos en variables
+          // Seguidamente los guardamos en variables.
           $email = $_SESSION['email'];
           $token = $_SESSION['access_token']['access_token'];
-          // Inyectamos datos en la base de datos.
-          try {
-            // Realizamos la consulta para insertar los datos necesarios a nuestra tabla.
-            $stmt = $this->db->prepare("INSERT INTO sesiones (`email`, `token`, `expiracion`) VALUES ('$email', '$token', '$expiracion');");
-            $stmt->execute();
-          } catch(PDOException $pdoe) {
-            echo $pdoe;
+
+          // Comprobamos si el token aun sirve.
+          if ($token->isAccessTokenExpired()) {
+            // Inyectamos datos en la base de datos.
+            try {
+              // Realizamos la consulta para insertar los datos necesarios a nuestra tabla.
+              $stmt = $this->db->prepare("INSERT INTO sesiones (`email`, `token`, `expiracion`) VALUES ('$email', '$token', '$expiracion');");
+              $stmt->execute();
+            } catch(PDOException $pdoe) {
+              echo $pdoe;
+            }
+          } else {
+            echo "El token todavía sirve.";
           }
         }
       }
