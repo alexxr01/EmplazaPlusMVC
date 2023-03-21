@@ -42,7 +42,7 @@ class GoogleOauthConfig {
       header('Location: ' . filter_var($this->redirect_uri, FILTER_SANITIZE_URL));
     }
 
-    // Seteamos el token
+    // Seteamos el token en la sesión.
     if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
       $this->client->setAccessToken($_SESSION['access_token']);
     }
@@ -50,28 +50,38 @@ class GoogleOauthConfig {
     // Guardamos los datos del usuario
     if ($this->client->getAccessToken()) {
       $userData = $this->obj_res->userinfo->get();
+      // Realizamos una comprobación.
       if (!empty($userData)) {
-        // Almacenamos los datos que nos vayan a interesar.
-        $token = $_SESSION['access_token'] = $this->client->getAccessToken();
-        $fecha_concesion = null;
-        $expira = null;
-        // Insertamos los datos en la sesion en la base de datos.
-        try {
-          // Realizamos la consulta de todos los items
-          $stmt = $this->db->prepare("INSERT INTO sesion (`token`, `fecha_concesion`, `expira`) VALUES ('$token', '$fecha_concesion', '$expira');");
-          $stmt->execute([$sesion]);
-          $stmt->setFetchMode(PDO::FETCH_CLASS, "Sesion");
-          $sesion = $stmt->fetch();
-
-      } catch(PDOException $pdoe) {
-          echo $pdoe;
-      }
-
-        /*
-        session_start();
-        $_SESSION['name'] = $userData->name;
-        $_SESSION['email'] = $userData->email;
-        */
+        // Debemos comprobar si el token ha excedido el tiempo de concesión o no.
+        // Lo haremos realizando una consulta a la base de datos.
+        $fechaHoraActual = date('Y-m-d H:i:s');
+        $resultadoComprobacion = $this->db->prepare("DELETE FROM sesiones WHERE expiracion > '$fechaHoraActual'");
+        $resultadoComprobacion->execute();
+        // Si la consulta ha tenido efecto damos paso a realizar un nuevo almacenamiento de sesión.
+        // En caso contrario no pasaría nada porque la sesión ya estaría activa al cumplir los requisitos.
+        if ($resultadoComprobacion!=1) {
+          // Creamos los objetos de sesiones que nos interesaran
+          $_SESSION['access_token'] = $this->client->getAccessToken();
+          $_SESSION['name'] = $userData->name;
+          $_SESSION['email'] = $userData->email;
+          // IMPORTANTE, en mi caso quiero dar un tiempo máximo de 5 minutos de token válido.
+          // Por lo que ha sido necesario convertir la hora obtenida y aumentarle los minutos.
+          $obtenerFechaActual = date('Y-m-d H:i:s', $this->client->getAccessToken()['expires_at']);
+          $minutos_actuales = date('i', strtotime($obtenerFechaActual)); // Obtenemos solo los minutos.
+          $aumentarMinutos = $minutos_actuales + 10; // Aumentamos 10 minutos.
+          $expiracion = date('Y-m-d H:' . $aumentarMinutos . ':s', strtotime($obtenerFechaActual)); // Obtenemos la definitiva.
+          // Seguidamente los almacenamos en variables
+          $email = $_SESSION['email'];
+          $token = $_SESSION['access_token']['access_token'];
+          // Inyectamos datos en la base de datos.
+          try {
+            // Realizamos la consulta para insertar los datos necesarios a nuestra tabla.
+            $stmt = $this->db->prepare("INSERT INTO sesiones (`email`, `token`, `expiracion`) VALUES ('$email', '$token', '$expiracion');");
+            $stmt->execute();
+          } catch(PDOException $pdoe) {
+            echo $pdoe;
+          }
+        }
       }
       
     } else {

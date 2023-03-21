@@ -8,11 +8,11 @@ class SesionModel {
         $this->db = SPDO::singleton();
     }
 
-    public function iniciarsesion($sesion) {
+    public function insertarSesion($sesion) {
         $result = null;
         try {
             // Realizamos la consulta de todos los items
-            $stmt = $this->db->prepare("INSERT INTO sesion (`token`, `fecha_concesion`, `expira`) VALUES ('$token', '$fecha_concesion', '$expira');");
+            $stmt = $this->db->prepare("INSERT INTO sesiones (`token`, `fecha_concesion`, `expira`) VALUES ('$token', '$fecha_concesion', '$expira');");
             $stmt->execute([$sesion]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, "Sesion");
             $sesion = $stmt->fetch();
