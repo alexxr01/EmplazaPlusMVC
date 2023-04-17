@@ -19,7 +19,7 @@
             require 'controllers/LoginController.php';
             LoginController::init();
             $loginController = new LoginController();
-            return $loginController->getUsuario("alexx_dev", "LoginView");
+            return $loginController->getUsuario("alexx_dev", "12434");
         ?>
 
     </div>

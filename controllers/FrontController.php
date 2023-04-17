@@ -8,6 +8,7 @@ class FrontController {
       require 'libs/Util.php'; // Métodos de utilidad general
       require 'config.php'; // Archivo con configuraciones.
     }
+    
     static function main() {
         FrontController::init();
         // Con el objetivo de no repetir nombre de clases, nuestros controladores

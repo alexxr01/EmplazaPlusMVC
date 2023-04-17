@@ -4,22 +4,22 @@ require 'FrontController.php';
 require 'models/UsuarioModel.php';
 
 class LoginController {
+    private $view;
 
     static function init() {
         FrontController::init();
     }
 
-    protected $view;
     public function __construct() {
         // Creamos una instancia de nuestro mini motor de plantillas
         $this->view = new View();
     }
-    public function getUsuario($usuario) { 
+    public function getUsuario($usuario, $contrasena) { 
         // Creamos una instancia de nuestro "modelo"
         $usuarioModel = new UsuarioModel();
  
         // Le pedimos al modelo todos los items
-        $usuario = $usuarioModel->iniciarsesion($usuario);
+        $usuario = $usuarioModel->iniciarsesion($usuario, $contrasena);
  
         // Finalmente presentamos nuestra plantilla
         $this->view->show("LoginView.php", $usuario);

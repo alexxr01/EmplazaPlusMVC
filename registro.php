@@ -13,7 +13,14 @@
         <!-- Incluimos la barra de navegación superior -->
         <?php include_once('views/BarraNavegacion.php') ?>
 
-        
+        <?php
+            // Incluimos el RegistroController
+            // vista->controlador->modelo->vista
+            require 'controllers/RegistroController.php';
+            RegistroController::init();
+            $registroController = new RegistroController();
+            return $registroController->registrarUsuario("alexx_dev", "aruibon154@g.educaand.es", "123456");
+        ?>
 
     </div>
 
