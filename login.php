@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="main-content">
-        
+        <!-- Incluimos la barra de navegación superior -->
         <?php include_once('views/BarraNavegacion.php') ?>
 
         <?php
@@ -19,7 +19,7 @@
             require 'controllers/LoginController.php';
             LoginController::init();
             $loginController = new LoginController();
-            echo $loginController->getUsuario("alexx_dev", "LoginView");
+            return $loginController->getUsuario("alexx_dev", "LoginView");
         ?>
 
     </div>

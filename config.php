@@ -1,4 +1,5 @@
 <?php
+require_once('libs/Config.php');
 $config = Config::singleton();
 // Nombre aplicacion
 $config->set('nombreAplicacion', 'EmplazaPlus');

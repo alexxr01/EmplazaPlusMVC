@@ -34,9 +34,9 @@ class View {
         include($path);
     }
 }
-/*
- El uso es bastante sencillo:
- $vista = new View();
- $vista->show('listado.php', array("nombre" => "Juan"));
-*/
+
+ //El uso es bastante sencillo:
+ //$vista = new View();
+ //$vista->show('listado.php', array("nombre" => "Juan"));
+
 ?>

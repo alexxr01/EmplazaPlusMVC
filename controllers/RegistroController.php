@@ -14,15 +14,15 @@ class LoginController {
         // Creamos una instancia de nuestro mini motor de plantillas
         $this->view = new View();
     }
-    public function getUsuario($usuario) { 
+    public function registrarUsuario($usuario) {
         // Creamos una instancia de nuestro "modelo"
         $usuarioModel = new UsuarioModel();
  
         // Le pedimos al modelo todos los items
-        $usuario = $usuarioModel->iniciarsesion($usuario);
+        $usuario = $usuarioModel->registrar($usuario);
  
         // Finalmente presentamos nuestra plantilla
-        $this->view->show("LoginView.php", $usuario);
+        $this->view->show("RegistroView.php", $usuario);
     }
 }
 ?>
