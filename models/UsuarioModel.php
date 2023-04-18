@@ -1,11 +1,16 @@
 <?php
-require 'phpo/Usuario.php';
+//require 'phpo/Usuario.php';
 class UsuarioModel {
 
-    protected $db;
+    private $db;
     public function __construct() {
-        //Traemos la única instancia de PDO
-        $this->db = SPDO::singleton();
+        // Traemos la única instancia de PDO
+        //$this->db = SPDO::singleton();
+
+        $this->db = new mysqli('localhost', 'root', '', 'emplazaplus');
+            if ($this->db->connect_errno) {
+            die("Error al conectar a la base de datos: " . $this->db->connect_error);
+        }
     }
 
     /*
@@ -25,7 +30,7 @@ class UsuarioModel {
         } catch(PDOException $pdoe) {
             echo $pdoe;
         }
-        //devolvemos la colección para que la vista la presente.
+        // Devolvemos la colección para que la vista la presente.
         return $usuario;
     }
 
@@ -33,17 +38,15 @@ class UsuarioModel {
     Modelo para el registro de un nuevo usuario.
     Ejecuta una consulta en la BBDD y añade un nuevo usuario.
     */
-    public function registrar($usuario, $correo, $contrasena) {
-        $result = null;
-        try {
-            $stmt = $this->db->prepare("INSERT INTO usuarios (`usuario`, `correo`, `contrasena`, `permisos`, `descripcion`) VALUES ('$usuario', '$correo', '$contrasena', 'Prueba', 'No hay descripcion');");
-            $stmt->execute([$usuario]);
-            $stmt->execute([$correo]);
-            $stmt->execute([$contrasena]);
-            $stmt->setFetchMode(PDO::FETCH_CLASS, "Usuario");
-            $usuario = $stmt->fetch();
-        } catch (PDOException $pdoe) {
-            echo $pdoe;
+    public function registrar($data) {
+        $usuario = $this->db->real_escape_string($data['usuario']);
+        $correo = $this->db->real_escape_string($data['correo']);
+        $contrasena = password_hash($data['contrasena'], PASSWORD_DEFAULT);
+
+        $consultaRegistro = "INSERT INTO usuarios (usuario, correo, contrasena, permisos, descripcion) VALUES ('$usuario', '$correo', '$contrasena', 'null', 'null')";
+            
+        if (!$this->db->query($consultaRegistro)) {
+            die("El usuario no se ha podido registrar: " . $this->db->error);
         }
     }
 }

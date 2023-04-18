@@ -14,12 +14,23 @@
         <?php include_once('views/BarraNavegacion.php') ?>
 
         <?php
-            // Incluimos el RegistroController
-            // vista->controlador->modelo->vista
-            require 'controllers/RegistroController.php';
-            RegistroController::init();
+            $action = isset($_GET['action']) ? $_GET['action'] : 'registro';
+            // Requimos el controlador para poder comenzar a llamar a todas las acciones
+            require_once 'controllers/RegistroController.php';
+            // Creamos un objeto del controlador para llamarlo posteriormente.
             $registroController = new RegistroController();
-            return $registroController->registrarUsuario("alexx_dev", "aruibon154@g.educaand.es", "123456");
+            // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
+            switch ($action) {
+                case 'registro':
+                $registroController->registro();
+                break;
+
+            // Agregamos mas acciones si es necesario. En este caso no.
+
+            // La opción por defecto será la siguiente:
+            default:
+            die('La acción no se ha podido llamar correctamente. Hay que revisar.');
+            }
         ?>
 
     </div>
