@@ -20,9 +20,12 @@ class RegistroController {
     
     public function registro() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Enviamos los datos al modelo concretamente a la función registrar
           $this->modelo->registrar($_POST);
+          // En caso correcto enviamos un mensaje.
           echo "El registro se ha realizado con éxito.";
         } else {
+          // En caso contrario mostramos de nuevo la vista registro.
           require 'views/RegistroView.php';
         }
       }

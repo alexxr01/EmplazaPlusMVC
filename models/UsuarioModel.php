@@ -39,13 +39,15 @@ class UsuarioModel {
     Ejecuta una consulta en la BBDD y añade un nuevo usuario.
     */
     public function registrar($data) {
+        // Creamos y definimos todas las propiedades que tendrá un usuario.
         $usuario = $this->db->real_escape_string($data['usuario']);
         $correo = $this->db->real_escape_string($data['correo']);
         $contrasena = password_hash($data['contrasena'], PASSWORD_DEFAULT);
-
+        // Definimos la consulta a ejecutar en la BBDD.
         $consultaRegistro = "INSERT INTO usuarios (usuario, correo, contrasena, permisos, descripcion) VALUES ('$usuario', '$correo', '$contrasena', 'null', 'null')";
-            
+        // En caso de error, mostraremos el mensaje correspondiente.
         if (!$this->db->query($consultaRegistro)) {
+            // Mensaje
             die("El usuario no se ha podido registrar: " . $this->db->error);
         }
     }
