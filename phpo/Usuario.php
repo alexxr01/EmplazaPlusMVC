@@ -8,7 +8,9 @@ class Usuario
     public $permisos;
     public $descripcion;
 
-    public function __construct() {}
+    public function __construct() {
+        
+    }
 
     // ID
     /*

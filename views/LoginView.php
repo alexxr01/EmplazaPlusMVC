@@ -5,10 +5,10 @@
         <!-- Formulario -->
         <div class="col-md-4 offset-md-4">
             <div class="card my-5">
-                <form name="formulario" class="card-body cardbody-color p-lg-5" action="controllers/LoginController.php" onsubmit="return formularioValidacion()" method="POST">
+                <form name="formulario" class="card-body cardbody-color p-lg-5" action="?action=login" onsubmit="return formularioValidacion()" method="POST">
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="usuario" id="Usuario" placeholder="Usuario">
-                        <small class="form-text text-muted">Introduce tu nombre de usuario único.</small>
+                        <input type="text" class="form-control" name="correo" placeholder="Correo">
+                        <small class="form-text text-muted">Introduce tu correo electrónico.</small>
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
@@ -19,48 +19,15 @@
                         <label class="form-check-label" for="flexSwitchCheckDefault">&nbsp;&nbsp; Mantener sesión iniciada</label>
                     </div>
                     <br>
-                    <button class="btn btn-dark">Iniciar sesion</button>
+                    <button type="submit" class="btn btn-dark">Iniciar sesion</button>
                 </form>
-                    <!-- Google OAuth -->
-                    <?php
-                        session_start();
-                        include_once('oauth/GoogleOauthConfig.php');
-
-                        // Verificar si el campo 'name' está definido en $_POST antes de asignarlo a $_SESSION['usuario']
-                        if (isset($_POST['name'])) {
-                            $_SESSION['usuario'] = $_POST['name'];
-                        } else {
-                            // hacer algo en caso de que 'name' no esté definido, por ejemplo redirigir a otra página o mostrar un mensaje de error
-                            exit('Error: El campo "name" no está definido');
-                        }
-
-                        // Verificar si $_SESSION['access_token'] está definida y no está vacía antes de utilizarla en la condición del if
-                        if(!isset($_SESSION['access_token']) || empty($_SESSION['access_token'])) {
-                        $google_client = GoogleOauthConfig::instance();
-                        $google_auth_url = $google_client->getGoogleAuthUrl();
-                        // hacer algo más aquí si es necesario
-                    }
-                    ?>
-
-
-                    <!-- Iniciar sesión mediante Google OAuth -->
-                    <?php if (isset($google_auth_url)): ?>
-                        <form action="<?php echo $google_auth_url; ?>" method="post">
-                        <button type="submit" class="btn btn-outline-dark">
-                        <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Logueate con Google" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                                Continuar con Google
-                        </button>
-                    </form>
-                    <?php else: ?>
-                        <?php
-                        header('Location: '.'confirmacion.php');
-                        ?>
-                    <?php endif ?>
+                    
                 <br>
             </div>
         </div>
         <a href="registro.php"><button type="button" class="btn btn-outline-dark btn-sm">¿Quieres
                 registrarte?</button></a>
         <a href="reestablecer.php"><button class="btn btn-outline-dark btn-sm">¿Contraseña olvidada?</button></a>
+        <br><br>
     </div>
 </div>

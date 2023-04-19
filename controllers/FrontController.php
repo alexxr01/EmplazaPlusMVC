@@ -1,4 +1,11 @@
 <?php
+// Incluimos algunas clases:
+require 'libs/Config.php'; // De configuracion
+require 'libs/SPDO.php'; // PDO con singleton
+require 'libs/View.php'; // Mini motor de plantillas
+require 'libs/Util.php'; // Métodos de utilidad general
+require 'config.php'; // Archivo con configuraciones.
+
 class FrontController {
     static function init() {
       // Incluimos algunas clases:

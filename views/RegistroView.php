@@ -33,5 +33,6 @@
                 </div>
             </div>
             <a href="./"><button type="button" class="btn btn-outline-dark btn-sm">¿Quieres iniciar sesión?</button></a>
+            <br><br>
         </div>
     </div>

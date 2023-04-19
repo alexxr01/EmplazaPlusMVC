@@ -14,12 +14,22 @@
         <?php include_once('views/BarraNavegacion.php') ?>
 
         <?php
-            // Incluimos el LoginController
-            // vista->controlador->modelo->vista
-            require 'controllers/LoginController.php';
-            LoginController::init();
-            $loginController = new LoginController();
-            return $loginController->getUsuario("alexx_dev", "12434");
+            $action = isset($_GET['action']) ? $_GET['action'] : 'login';
+
+            require_once 'controllers/CuentaController.php';
+
+            $cuentaController = new CuentaController();
+
+            switch ($action) {
+                case 'login':
+                $cuentaController->login();
+                break;
+
+            // agregar otras acciones según sea necesario
+
+            default:
+                die('Acción no válida');
+            }
         ?>
 
     </div>
