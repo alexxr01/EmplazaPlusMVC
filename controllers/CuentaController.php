@@ -38,11 +38,12 @@ class CuentaController {
         $usuario = $this->modelo->iniciarsesion($_POST['correo']);
   
         if ($usuario && password_verify($_POST['contrasena'], $usuario['contrasena'])) {
-          echo "<br><center>Inicio de sesión exitoso.</center>";
+          echo "<br><center><b>". $_POST['correo']. "</b>, has iniciado sesión. Por favor, espere...</center>";
           // Redireccionar al principio.
-        header("refresh: 2; url='confirmacion.php'"); // Ejecución
+        header("refresh: 3; url='confirmacion.php'"); // Ejecución
         } else {
-          echo "<br><center>Correo electrónico o contraseña incorrectos.<br>Revisa los campos.</center>";
+          echo "<br><center>Las credenciales son incorrectas.<br>Revisa los campos.</center>";
+          header("refresh: 5; url='login.php'"); // Ejecución
         }
       } else {
         require 'views/LoginView.php';
