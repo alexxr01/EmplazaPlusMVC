@@ -20,5 +20,16 @@ class EmplazamientoModel {
         }
         return $emplazamientos;
     }
+
+    public function obtenerDetallesEmplazamiento($nombreEmplazamiento) {
+        $query = "SELECT * FROM emplazamiento WHERE nombre = :nombreEmplazamiento";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':nombreEmplazamiento' => $nombreEmplazamiento));
+        $emplazamientos = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $emplazamientos[] = $row;
+        }
+        return $emplazamientos;
+    }
 }
 ?>

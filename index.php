@@ -23,8 +23,12 @@
 
             switch ($action) {
                 case 'mostrarEmplazamientos':
-                $emplazamientoController->mostrarEmplazamientos();
-                break;
+                    $emplazamientoController->mostrarEmplazamientos();
+                    break;
+
+                case 'detallesEmplazamiento':
+                    $emplazamientoController->detallesEmplazamiento();
+                    break;
 
             // agregar otras acciones según sea necesario
 

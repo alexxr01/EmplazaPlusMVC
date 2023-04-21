@@ -20,5 +20,10 @@ class EmplazamientoController {
         //require_once 'views/TestView.php';
         require_once 'views/EmplazamientoView.php';
     }
+
+    public function detallesEmplazamiento() {
+        $emplazamientos = $this->modelo->obtenerDetallesEmplazamiento("Campo de Fútbol");
+        require_once 'views/DetallesEmplazamientoView.php';
+    }
 }
 ?>

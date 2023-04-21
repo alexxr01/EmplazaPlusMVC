@@ -21,6 +21,8 @@
                     <br>
                     <button type="submit" class="btn btn-dark">Iniciar sesion</button>
                 </form>
+
+                <!-- Acceso mediante Google Oauth -->
                     
                 <br>
             </div>

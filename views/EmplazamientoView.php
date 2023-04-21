@@ -22,17 +22,17 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Nombre del producto -->
-                                    <h5 class="fw-bolder"><?php echo $emplazamiento['nombre']; ?></h5>
+                                    <h5 class="fw-bolder" name="nombreEmplazamiento"><?php echo $emplazamiento['nombre']; ?></h5>
                                     <!-- Descripción del producto -->
                                     <?php echo $emplazamiento['descripcion']; ?>
                                     <br><br>
                                     <!-- Precio del producto-->
-                                    <p>Precio: <b><?php echo $emplazamiento['precio']; ?> €</b></p>
+                                    <p>Precio: <b><?php echo $emplazamiento['precio']; ?> € / h</b></p>
                                 </div>
                             </div>
-                            <!-- Product actions-->
+                            <!-- Acciones a realizar para un emplazamiento en concreto -->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Ver más</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="?action=detallesEmplazamiento">Mostrar detalles</a></div>
                             </div>
                         </div>
                     </div>
