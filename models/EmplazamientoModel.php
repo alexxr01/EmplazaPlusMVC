@@ -31,5 +31,16 @@ class EmplazamientoModel {
         }
         return $emplazamientos;
     }
+
+    public function nuevoEmplazamiento($data) {
+        $nombre = $data['nombre'];
+        $descripcion = $data['descripcion'];
+        $categoria = $data['categoria'];
+        $precio = $data['precio'];
+
+        $query = "INSERT INTO emplazamiento (nombre, descripcion, categoria, precio) VALUES (:nombre, :descripcion, :categoria, :precio)";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':nombre' => $nombre, ':descripcion' => $descripcion, ':categoria' => $categoria, ':precio' => $precio));
+    }
 }
 ?>

@@ -27,7 +27,7 @@ class CuentaModel {
         $correo = $data['correo'];
         $contrasena = password_hash($data['contrasena'], PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO usuarios (usuario, correo, contrasena, permisos, descripcion) VALUES (:usuario, :correo, :contrasena, 'null', 'null')";
+        $query = "INSERT INTO usuarios (usuario, correo, contrasena, permisos, descripcion) VALUES (:usuario, :correo, :contrasena, 'usuario', 'Sin descripcion')";
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':usuario' => $usuario, ':correo' => $correo, ':contrasena' => $contrasena));
     }

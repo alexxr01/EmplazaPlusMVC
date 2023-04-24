@@ -41,6 +41,12 @@ class CuentaController {
           echo "<br><center><b>". $_POST['correo']. "</b>, has iniciado sesión. Por favor, espere...</center>";
           // Redireccionar al principio.
         header("refresh: 3; url='confirmacion.php'"); // Ejecución
+
+        // SESIÓN
+        session_start(); // Creamos la sesión
+        $_SESSION['usuario'] = $usuario['usuario'];
+        $_SESSION['correo'] = $usuario['correo'];
+
         } else {
           echo "<br><center>Las credenciales son incorrectas.<br>Revisa los campos.</center>";
           header("refresh: 5; url='login.php'"); // Ejecución

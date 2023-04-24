@@ -16,10 +16,8 @@ session_start();
 
     <h1>Bien!</h1>
     <p>Te has logueado correctamente.</p>
-    <!--
-    <?php echo "Usuario: " . $_SESSION['name'] . "<br>";?>
-    <?php echo "Email: " . $_SESSION['email'] . "<br><br>"; ?>
-    <?php echo "Token de sesion: <i>" . $_SESSION['access_token']['access_token'] . "</i><br>"; ?>
-    -->
+
+    <?php echo "Usuario: " . $_SESSION['usuario'] . "<br>";?>
+    <?php echo "Correo electrónico: " . $_SESSION['correo'] . "<br><br>"; ?>
 </body>
 </html>

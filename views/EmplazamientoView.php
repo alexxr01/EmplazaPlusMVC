@@ -16,24 +16,41 @@
                     <?php foreach ($emplazamientos as $emplazamiento): ?>
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://i.imgur.com/fd3zVHm.jpeg" alt="..." />
-                            <!-- Product details-->
+                            <!-- Muestreo de imagenes -->
+                            <!-- <img class="card-img-top" src="https://i.imgur.com/fd3zVHm.jpeg" alt="..." /> -->
+
+                            <!-- Inicio del carousel de imágenes -->
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" src="https://i.imgur.com/fd3zVHm.jpeg" alt="First slide">
+                                    </div>
+                            </div>
+                            <!-- Fin del carousel de imágenes -->
+                        </div>
+                            <!-- Detalles e información del producto -->
+                            <form action="?action=detalles" method="POST">
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Nombre del producto -->
-                                    <h5 class="fw-bolder" name="nombreEmplazamiento"><?php echo $emplazamiento['nombre']; ?></h5>
+                                    <h5>
+                                        <input type="text" readonly class="form-control-plaintext text-center fw-bolder" name="nombreEmplazamiento" value="<?php echo $emplazamiento['nombre']; ?>">
+                                    </h5>
                                     <!-- Descripción del producto -->
                                     <?php echo $emplazamiento['descripcion']; ?>
                                     <br><br>
                                     <!-- Precio del producto-->
-                                    <p>Precio: <b><?php echo $emplazamiento['precio']; ?> € / h</b></p>
+                                    <p>Precio: <b><?php echo $emplazamiento['precio']; ?>€ / h</b></p>
                                 </div>
                             </div>
                             <!-- Acciones a realizar para un emplazamiento en concreto -->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="?action=detallesEmplazamiento">Mostrar detalles</a></div>
+                                <!--<div class="text-center"><a class="btn btn-outline-dark mt-auto">Reservar</a></div>-->
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-outline-dark mt-auto">Mostrar detalles</button>
+                                </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                     <?php endforeach; ?>

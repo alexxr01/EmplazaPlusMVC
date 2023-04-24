@@ -22,8 +22,22 @@ class EmplazamientoController {
     }
 
     public function detallesEmplazamiento() {
-        $emplazamientos = $this->modelo->obtenerDetallesEmplazamiento("Campo de Fútbol");
+        $emplazamientos = $this->modelo->obtenerDetallesEmplazamiento($_POST['nombreEmplazamiento']);
         require_once 'views/DetallesEmplazamientoView.php';
+    }
+
+    public function registroEmplazamiento() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          // Enviamos los datos al modelo concretamente a la función registrar
+          $this->modelo->nuevoEmplazamiento($_POST);
+          // En caso correcto enviamos un mensaje.
+          echo "<br><center>Emplazamiento añadido correctamente.</center><br>";
+          // Redireccionar al principio.
+          header("refresh: 2; url='index.php'"); // Ejecución
+        } else {
+          // En caso contrario mostramos de nuevo la vista registro.
+          require 'views/RegistrarEmplazamientoView.php';
+        }
     }
 }
 ?>
