@@ -26,6 +26,10 @@ class EmplazamientoController {
         require_once 'views/DetallesEmplazamientoView.php';
     }
 
+    public function realizarReserva() {
+        
+    }
+
     public function registroEmplazamiento() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           // Enviamos los datos al modelo concretamente a la función registrar

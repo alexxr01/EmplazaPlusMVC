@@ -4,7 +4,6 @@ require 'FrontController.php';
 require 'models/CuentaModel.php';
 
 class CuentaController {
-    //private $view;
     private $modelo;
 
     static function init() {
@@ -26,7 +25,7 @@ class CuentaController {
           echo "<br><center>Te has registrado correctamente.</center><br>";
           echo "<center>Vas a ser redirigido a la página de logueo.</center>";
           // Redireccionar al principio.
-          header("refresh: 5; url='login.php'"); // Ejecución
+          header("refresh: 5; url='login'"); // Ejecución
         } else {
           // En caso contrario mostramos de nuevo la vista registro.
           require 'views/RegistroView.php';
@@ -40,7 +39,7 @@ class CuentaController {
         if ($usuario && password_verify($_POST['contrasena'], $usuario['contrasena'])) {
           echo "<br><center><b>". $_POST['correo']. "</b>, has iniciado sesión. Por favor, espere...</center>";
           // Redireccionar al principio.
-        header("refresh: 3; url='confirmacion.php'"); // Ejecución
+        header("refresh: 3; url='panel'"); // Ejecución
 
         // SESIÓN
         session_start(); // Creamos la sesión
@@ -49,7 +48,7 @@ class CuentaController {
 
         } else {
           echo "<br><center>Las credenciales son incorrectas.<br>Revisa los campos.</center>";
-          header("refresh: 5; url='login.php'"); // Ejecución
+          header("refresh: 5; url='login'"); // Ejecución
         }
       } else {
         require 'views/LoginView.php';
