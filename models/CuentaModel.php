@@ -37,13 +37,12 @@ class CuentaModel {
     que actualmente nos encontramos logueados.
     */
     public function reestablecer($data) {
-        // ACTUALMENTE EN DESARROLLO.
-        $usuario = $data['usuario'];
+        $correo = $data['correo'];
         $contrasenanueva = password_hash($data['contrasenanueva'], PASSWORD_DEFAULT);
 
-        $query = "UPDATE usuarios SET contrasena=':contrasenanueva' WHERE usuario=':usuario'";
+        $query = "UPDATE usuarios SET contrasena=:contrasenanueva WHERE correo=:correo";
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':usuario' => $usuario, ':contrasenanueva' => $contrasenanueva));
+        $stmt->execute(array(':correo' => $correo, ':contrasenanueva' => $contrasenanueva));
     }
 
     public function darBaja($data) {

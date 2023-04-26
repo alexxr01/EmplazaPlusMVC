@@ -8,8 +8,7 @@
                 <div class="card my-5">
                     <form class="card-body cardbody-color p-lg-5" action="?action=reestablecer" method="POST">
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="usuario" id="Usuario" placeholder="Usuario">
-                            <small class="form-text text-muted">Introduce el usuario a cambiar la contraseña.</small>
+                            <input type="text" class="form-control" name="correo" id="Correo" placeholder="Correo electrónico">
                         </div>
                         <div class="mb-3">
                             <input type="password" class="form-control" name="contrasenaantigua" placeholder="Contraseña Antigua">

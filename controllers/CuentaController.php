@@ -43,8 +43,8 @@ class CuentaController {
 
         // SESIÓN
         session_start(); // Creamos la sesión
-        $_SESSION['usuario'] = $usuario['usuario'];
-        $_SESSION['correo'] = $usuario['correo'];
+        $_SESSION['usuario'] = $usuario['usuario']; // Almacenamos el usuario
+        $_SESSION['correo'] = $usuario['correo']; // Almacenamos el correo
 
         } else {
           echo "<br><center>Las credenciales son incorrectas.<br>Revisa los campos.</center>";
@@ -57,18 +57,19 @@ class CuentaController {
 
   public function reestablecer() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $usuario = $this->modelo->reestablecer($_POST['correo']);
+      $correo = $this->modelo->reestablecer($_POST);
 
-      if ($usuario && password_verify($_POST['contrasena'], $usuario['contrasena'])) {
+      if ($correo && password_verify($_POST['contrasenaantigua'], $correo['contrasena'])) {
+        echo "<br><center>La contraseña no se ha podido cambiar.<br>Revisa los campos.</center>";
+      } else {
         echo "<br><center>Has cambiado tu contraseña correctamente.</center>";
         // Redireccionar al principio.
-      header("refresh: 2; url='login.php'"); // Ejecución
-      } else {
-        echo "<br><center>La contraseña no se ha podido cambiar.<br>Revisa los campos.</center>";
+        header("refresh: 2; url='login.php'"); // Ejecución
       }
     } else {
       require 'views/ReestablecerView.php';
     }
   }
+  
 }
 ?>

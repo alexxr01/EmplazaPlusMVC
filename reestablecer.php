@@ -28,16 +28,16 @@
 
         <?php
             // 
-            $action = isset($_GET['action']) ? $_GET['action'] : 'registro';
+            $action = isset($_GET['action']) ? $_GET['action'] : 'reestablecer';
             // Requimos el controlador para poder comenzar a llamar a todas las acciones
             require_once 'controllers/CuentaController.php';
             // Creamos un objeto del controlador para llamarlo posteriormente.
             $cuentaController = new CuentaController();
             // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
             switch ($action) {
-                case 'registro':
+                case 'reestablecer':
                     // Llamamos a la función registro que se ubica en el controlador.
-                    $cuentaController->registro();
+                    $cuentaController->reestablecer();
                 break;
 
             // Agregamos mas acciones si es necesario. En este caso no.
