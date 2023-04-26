@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Loguea con tu usuario administrador"
-AuthUserFile contrasenas.txt
-Require valid-user

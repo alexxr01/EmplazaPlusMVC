@@ -12,7 +12,7 @@ class EmplazamientoModel {
     disponibles en el inicio de la web.
     */
     public function obtenerEmplazamientos() {
-        $query = "SELECT * FROM emplazamiento";
+        $query = "SELECT * FROM emplazamientos";
         $stmt = $this->db->query($query);
         $emplazamientos = array();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -22,7 +22,7 @@ class EmplazamientoModel {
     }
 
     public function obtenerDetallesEmplazamiento($nombreEmplazamiento) {
-        $query = "SELECT * FROM emplazamiento WHERE nombre = :nombreEmplazamiento";
+        $query = "SELECT * FROM emplazamientos WHERE nombre = :nombreEmplazamiento";
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':nombreEmplazamiento' => $nombreEmplazamiento));
         $emplazamientos = array();
@@ -34,13 +34,14 @@ class EmplazamientoModel {
 
     public function nuevoEmplazamiento($data) {
         $nombre = $data['nombre'];
-        $descripcion = $data['descripcion'];
+        $descripcion_corta = $data['descripcion_corta'];
+        $descripcion_larga = $data['descripcion_larga'];
         $categoria = $data['categoria'];
         $precio = $data['precio'];
 
-        $query = "INSERT INTO emplazamiento (nombre, descripcion, categoria, precio) VALUES (:nombre, :descripcion, :categoria, :precio)";
+        $query = "INSERT INTO emplazamientos (nombre, descripcion_corta, descripcion_larga, categoria, precio) VALUES (:nombre, :descripcion_corta, :descripcion_larga, :categoria, :precio)";
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':nombre' => $nombre, ':descripcion' => $descripcion, ':categoria' => $categoria, ':precio' => $precio));
+        $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio));
     }
 }
 ?>

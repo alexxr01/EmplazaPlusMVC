@@ -16,15 +16,25 @@ class ReservaController {
     }
 
     public function mostrarReservasRealizadas() {
-        /*
-        if (isset($_POST['usuario'])) {
-            
-        } else {
-            echo "La tabla reservas no se ha podido mostrar correctamente.";
-        } */
-
         $reservas = $this->modelo->consultarReservas();
         require_once 'views/panelUsuario/TablaReservasView.php';
+    }
+
+    public function realizarReserva() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Enviamos los datos al modelo concretamente a la función registrar
+            $reservas = $this->modelo->realizarReserva($_POST);
+            // En caso correcto enviamos un mensaje.
+            echo "<br><center>La reserva se ha realizado correctamente.</center><br>";
+            echo "<center>Te enviaremos al panel de usuario.</center>";
+            // Redireccionar al principio.
+            header("refresh: 3; url='panel'"); // Ejecución
+          } else {
+            // En caso contrario mostramos de nuevo la vista registro.
+            require_once 'views/PagoView.php';
+          }
+
+        
         
     }
 }

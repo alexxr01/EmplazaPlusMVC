@@ -27,19 +27,20 @@
                                     </div>
                             </div>
                             <!-- Fin del carousel de imágenes -->
+                            
                         </div>
                             <!-- Detalles e información del producto -->
                             <form action="?action=detalles" method="POST">
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Nombre del producto -->
-                                    <h5>
+                                    <h5 name="nombreEmplazamiento">
                                         <input type="text" readonly class="form-control-plaintext text-center fw-bolder" name="nombreEmplazamiento" value="<?php echo $emplazamiento['nombre']; ?>">
                                     </h5>
                                     <!-- Descripción del producto -->
-                                    <?php echo $emplazamiento['descripcion']; ?>
+                                    <?php echo $emplazamiento['descripcion_corta']; ?>
                                     <br><br>
-                                    <!-- Precio del producto-->
+                                    <!-- Precio del producto -->
                                     <p>Precio: <b><?php echo $emplazamiento['precio']; ?>€ / h</b></p>
                                 </div>
                             </div>
@@ -54,8 +55,8 @@
                         </div>
                     </div>
                     <?php endforeach; ?>
-
                     <!-- Fin lista de emplazamientos -->
+
                 </div>
             </div>
         </section>

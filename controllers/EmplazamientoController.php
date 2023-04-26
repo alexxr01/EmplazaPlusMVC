@@ -40,7 +40,7 @@ class EmplazamientoController {
           header("refresh: 2; url='index.php'"); // Ejecución
         } else {
           // En caso contrario mostramos de nuevo la vista registro.
-          require 'views/RegistrarEmplazamientoView.php';
+          require 'views/panelAdministrador/RegistrarEmplazamientoView.php';
         }
     }
 }

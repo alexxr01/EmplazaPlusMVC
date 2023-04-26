@@ -10,7 +10,10 @@
                             <input type="text" class="form-control" name="nombre" id="Nombre" placeholder="Nombre emplazamiento">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="descripcion" placeholder="Descripción competente">
+                            <input type="text" class="form-control" name="descripcion_corta" placeholder="Descripción corta">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="descripcion_larga" placeholder="Descripción larga">
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control" name="categoria" placeholder="Categoría a la que pertenece">

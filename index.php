@@ -43,6 +43,10 @@
                     $emplazamientoController->detallesEmplazamiento();
                     break;
 
+                case 'reservar':
+                    $emplazamientoController->reservarEmplazamiento();
+                    break;
+
             // agregar otras acciones según sea necesario
 
             default:
