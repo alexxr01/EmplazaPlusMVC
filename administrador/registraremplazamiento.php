@@ -60,10 +60,34 @@ if(isset($_GET['cerrar_sesion'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Panel de administrador</h1>
+                    <h1 class="mt-4">Registrar nuevo emplazamiento</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Aquí podrás tomar el control de todo el sistema.</li>
+                        <li class="breadcrumb-item active">Añade un nuevo lugar de reservas para los usuarios.
+                            Los cambios aparecerán reflejados inmediatamente.
+                        </li>
                     </ol>
+
+                    <!-- Tabla con la lista de usuarios -->
+                    <?php
+                            $action = isset($_GET['action']) ? $_GET['action'] : 'registroEmplazamiento';
+                            // Requimos el controlador para poder comenzar a llamar a todas las acciones
+                            require_once 'controllers/AdminController.php';
+                            // Creamos un objeto del controlador para llamarlo posteriormente.
+                            $adminController = new AdminController();
+                            // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
+                            switch ($action) {
+                                case 'registroEmplazamiento':
+                                // Llamamos a la función registro que se ubica en el controlador.
+                                $adminController->registroEmplazamiento();
+                                break;
+
+                            // Agregamos mas acciones si es necesario. En este caso no.
+
+                            // La opción por defecto será la siguiente:
+                            default:
+                                die('La acción no se ha podido llamar correctamente. Hay que revisar.');
+                            }
+                            ?>
 
                 </div>
             </main>

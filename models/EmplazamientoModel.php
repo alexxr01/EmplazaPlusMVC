@@ -31,17 +31,5 @@ class EmplazamientoModel {
         }
         return $emplazamientos;
     }
-
-    public function nuevoEmplazamiento($data) {
-        $nombre = $data['nombre'];
-        $descripcion_corta = $data['descripcion_corta'];
-        $descripcion_larga = $data['descripcion_larga'];
-        $categoria = $data['categoria'];
-        $precio = $data['precio'];
-
-        $query = "INSERT INTO emplazamientos (nombre, descripcion_corta, descripcion_larga, categoria, precio) VALUES (:nombre, :descripcion_corta, :descripcion_larga, :categoria, :precio)";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio));
-    }
 }
 ?>

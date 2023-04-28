@@ -60,10 +60,32 @@ if(isset($_GET['cerrar_sesion'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Panel de administrador</h1>
+                    <h1 class="mt-4">Lista de usuarios</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Aquí podrás tomar el control de todo el sistema.</li>
+                        <li class="breadcrumb-item active">Dispones de una lista de todos los usuarios registrados en el sistema y acciones a realizar sobre ellos en caso necesario.</li>
                     </ol>
+
+                    <!-- Tabla con la lista de usuarios -->
+                    <?php
+                    $action = isset($_GET['action']) ? $_GET['action'] : 'tablaMostrarUsuarios';
+                    // Requimos el controlador para poder comenzar a llamar a todas las acciones
+                    require_once ('controllers/AdminController.php');
+                    // Creamos un objeto del controlador para llamarlo posteriormente.
+                    $adminController = new AdminController();
+                    // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
+                    switch ($action) {
+                        case 'tablaMostrarUsuarios':
+                        // Llamamos a la función registro que se ubica en el controlador.
+                        $adminController->tablaMostrarUsuarios();
+                    break;
+
+                    // Agregamos mas acciones si es necesario. En este caso no.
+
+                    // La opción por defecto será la siguiente:
+                    default:
+                    die('La acción no se ha podido llamar correctamente. Hay que revisar.');
+                    }
+                    ?>
 
                 </div>
             </main>
