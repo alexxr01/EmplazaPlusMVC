@@ -48,5 +48,15 @@ class CuentaModel {
     public function darBaja($data) {
         // Para desarrollar más tarde...
     }
+
+    public function tablaMostrarUsuarios() {
+        $query = "SELECT * FROM usuarios";
+        $stmt = $this->db->query($query);
+        $usuarios = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $usuarios[] = $row;
+        }
+        return $usuarios;
+    }
 }
 ?>
