@@ -86,7 +86,7 @@ class AdminController {
       // Enviamos los datos al modelo concretamente a la función registrar
       $this->modelo->nuevoEmplazamiento($_POST);
       // En caso correcto enviamos un mensaje.
-      echo "<br><center>Emplazamiento añadido correctamente.</center><br>";
+      echo '<script language="javascript">alert("Emplazamiento añadido correctamente");</script>';
       // Redireccionar al principio.
       header("refresh: 2; url='index.php'"); // Ejecución
     } else {
