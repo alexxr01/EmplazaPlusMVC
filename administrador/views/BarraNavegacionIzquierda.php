@@ -38,16 +38,25 @@
                 <div class="sb-sidenav-menu-heading">Configuracion General</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Charts
+                    Sin configurar
                 </a>
                 <a class="nav-link" href="tables.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Tables
+                    Sin configurar
+                </a>
+
+                <!-- Pestaña para realizar acciones en la sesion -->
+                <div class="sb-sidenav-menu-heading">Usuario</div>
+                <a class="nav-link" href="charts.html">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-user-lock"></i></div>
+                    Cerrar sesion
                 </a>
             </div>
         </div>
+        <!--
         <div class="sb-sidenav-footer">
             <button type="button" class="btn btn-light">Cerrar sesión</button>
         </div>
+        -->
     </nav>
 </div>

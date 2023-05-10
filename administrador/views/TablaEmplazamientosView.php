@@ -22,7 +22,7 @@
                     <td><?php echo $emplazamiento['descripcion_corta']; ?></td>
                     <td><?php echo $emplazamiento['descripcion_larga']; ?></td>
                     <td><?php echo $emplazamiento['categoria']; ?></td>
-                    <td><?php echo $emplazamiento['precio']; ?></td>
+                    <td><?php echo $emplazamiento['precio']; ?>€/h</td>
                     <td>
                         <button type="button" class="btn btn-light btn-sm">Detalles</button>
                         <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
