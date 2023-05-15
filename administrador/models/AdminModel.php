@@ -80,5 +80,23 @@ class AdminModel {
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio));
     }
+
+    /*
+    Función que nos permite consultar toda la lista de reservas realizadas.
+    */
+    public function consultarTotalReservas() {
+        $query = "SELECT r.id, u.usuario, e.nombre, r.fecha_alta, r.fecha_baja, r.precio
+        FROM usuarios u 
+        JOIN reservas r ON u.id = r.id_usuario
+        JOIN emplazamientos e ON r.id_emplazamiento = e.id";
+
+        $stmt = $this->db->query($query);
+
+        $reservas = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $reservas[] = $row;
+        }
+        return $reservas;
+    }
 }
 ?>

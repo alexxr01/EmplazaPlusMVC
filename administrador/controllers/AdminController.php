@@ -16,21 +16,6 @@ class AdminController {
         // Creamos una instancia de nuestro modelo usuario
         $this->modelo = new AdminModel();
     }
-    
-    public function registro() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          // Enviamos los datos al modelo concretamente a la función registrar
-          $this->modelo->registrar($_POST);
-          // En caso correcto enviamos un mensaje.
-          echo "<br><center>Te has registrado correctamente.</center><br>";
-          echo "<center>Vas a ser redirigido a la página de logueo.</center>";
-          // Redireccionar al principio.
-          header("refresh: 5; url='login'"); // Ejecución
-        } else {
-          // En caso contrario mostramos de nuevo la vista registro.
-          require 'views/RegistroView.php';
-        }
-    }
 
     public function login() {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -87,13 +72,18 @@ class AdminController {
       $this->modelo->nuevoEmplazamiento($_POST);
       // En caso correcto enviamos un mensaje.
       echo '<script language="javascript">alert("Emplazamiento añadido correctamente");</script>';
-      // Redireccionar al principio.
-      header("refresh: 2; url='index.php'"); // Ejecución
+      // Volvemos a la pantalla de registro emplazamiento.
+      require 'views/RegistrarEmplazamientoView.php';
     } else {
       // En caso contrario mostramos de nuevo la vista registro.
       require 'views/RegistrarEmplazamientoView.php';
     }
-}
+  }
+
+  public function mostrarTodasReservas() {
+    $reservas = $this->modelo->consultarTotalReservas();
+    require_once 'views/TablaReservasView.php';
+  }
   
 }
 ?>

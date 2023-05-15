@@ -29,12 +29,13 @@
                         <a class="nav-link" href="registraremplazamiento">Registrar uno nuevo</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="listareservas">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-ticket"></i></div>
                     Reservas
                 </a>
 
                 <!-- Pestaña de configuraciones -->
+                <!--
                 <div class="sb-sidenav-menu-heading">Configuracion General</div>
                 <a class="nav-link" href="charts.html">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
@@ -44,6 +45,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                     Sin configurar
                 </a>
+                -->
 
                 <!-- Pestaña para realizar acciones en la sesion -->
                 <div class="sb-sidenav-menu-heading">Usuario</div>

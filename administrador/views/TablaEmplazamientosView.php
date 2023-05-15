@@ -24,8 +24,7 @@
                     <td><?php echo $emplazamiento['categoria']; ?></td>
                     <td><?php echo $emplazamiento['precio']; ?>€/h</td>
                     <td>
-                        <button type="button" class="btn btn-light btn-sm">Detalles</button>
-                        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>

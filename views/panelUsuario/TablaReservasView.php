@@ -13,7 +13,6 @@
                     <th scope="col">Fecha inicio</th>
                     <th scope="col">Fecha fin</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +23,6 @@
                     <td><?php echo $reserva['fecha_alta']; ?></td>
                     <td><?php echo $reserva['fecha_baja']; ?></td>
                     <td><?php echo $reserva['precio']; ?> €</td>
-                    <td><button type="button" class="btn btn-danger btn-sm active">Cancelar</button></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
