@@ -24,7 +24,7 @@ class AdminController {
         if ($usuario && password_verify($_POST['contrasena'], $usuario['contrasena'])) {
           echo "<br><center><b>". $_POST['correo']. "</b>, has iniciado sesión. Por favor, espere...</center>";
           // Redireccionar al principio.
-        header("refresh: 3; url='panel'"); // Ejecución
+        header("refresh: 3; url=''"); // Ejecución
 
         // SESIÓN
         session_start(); // Creamos la sesión

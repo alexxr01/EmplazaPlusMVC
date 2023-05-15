@@ -1,7 +1,7 @@
 <div class="container">
     <div class="text-center mt-5">
         <img src="../src/img/favicon.png" alt="Registrame!" style="width: 100px;">
-        <h6><span class="badge badge-light">Formulario para ingresar al panel administrador.</span></h6>
+        <h6><span class="badge badge-light">Ingresa sus datos de administracion.</span></h6>
         <!-- Formulario -->
         <div class="col-md-4 offset-md-4">
             <div class="card my-5">
