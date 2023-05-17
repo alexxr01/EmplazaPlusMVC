@@ -16,6 +16,8 @@ CREATE TABLE emplazamientos (
     `nombre` VARCHAR(30) NOT NULL COMMENT 'Nombre del emplazamiento' ,
     `descripcion_corta` VARCHAR(100) NOT NULL COMMENT 'Descripción sencilla para dar detalles' ,
     `descripcion_larga` VARCHAR(1000) NOT NULL COMMENT 'Descripción larga, para explicar un poco más' ,
-    `categoria` VARCHAR(15) NOT NULL COMMENT 'Categoría a la que pertenece' ,
+    `categoria` VARCHAR(20) NOT NULL COMMENT 'Categoría a la que pertenece' ,
     `precio` INT NOT NULL COMMENT 'Precio por horas' ,
+    `fecha_registro` DATETIME COMMENT 'Fecha y hora en la que se ha registrado el emplazamiento' ,
+    `imagenes` MEDIUMBLOB COMMENT 'Imagenes ilustrativas' ,
     PRIMARY KEY (`id`)) ENGINE = InnoDB;

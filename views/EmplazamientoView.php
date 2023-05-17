@@ -23,7 +23,7 @@
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="https://i.imgur.com/fd3zVHm.jpeg" alt="First slide">
+                                        <img class="d-block w-100" src="<?php echo $emplazamiento['imagenes']; ?>" alt="Imagen ilustrativa">
                                     </div>
                             </div>
                             <!-- Fin del carousel de imágenes -->
