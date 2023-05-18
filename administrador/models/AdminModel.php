@@ -77,32 +77,22 @@ class AdminModel {
         $precio = $data['precio'];
 
         // Gestionamos la imagen a insertar en la BBDD
-        $comprobacion = getimagesize($_FILES["imagen"]["tmp_name"]);
-
-        if ($comprobacion !== false) {
+        if ($_FILES["imagen"]["error"] === UPLOAD_ERR_OK) {
             $imagen = $_FILES['imagen']['tmp_name'];
-            $contenidoImagen = addslashes(file_get_contents($imagen));
+            $comprobacion = getimagesize($imagen);
 
-            $fechaCreacion = date("Y-m-d H:i:s");
-        }
+            if ($comprobacion !== false) {
+                // Cargamos el contenido de la imagen
+                $contenidoImagen = file_get_contents($imagen);
+                // Generamos una variable que almacenará la fecha y hora actual
+                $fechaCreacion = date("Y-m-d H:i:s");
 
-        // Verificar si se ha enviado un archivo y si no hubo errores en la subida
-        /*
-        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            $nombreImagen = $_FILES['imagen']['name'];
-            $rutaImagen = 'src/img/imagenesEmplazamientos/' . $nombreImagen;
-
-            // Mover el archivo cargado a la ruta de destino
-            move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaImagen);
-        } else {
-            // Colocar una imagen por defecto en caso de no existir ninguna o no cargarla bien
-            $rutaImagen = 'src/img/imagenesEmplazamientos/imagenPorDefecto.jpg';
-        }
-        */
-
-        $query = "INSERT INTO emplazamientos (nombre, descripcion_corta, descripcion_larga, categoria, precio, fecha_registro, imagenes) VALUES (:nombre, :descripcion_corta, :descripcion_larga, :categoria, :precio, :fecha_registro, :imagenes)";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio, ':fecha_registro' => $fechaCreacion, ':imagenes' => $contenidoImagen));
+                // Continuar con el procesamiento de la imagen
+                $query = "INSERT INTO emplazamientos (nombre, descripcion_corta, descripcion_larga, categoria, precio, fecha_registro, imagenes) VALUES (:nombre, :descripcion_corta, :descripcion_larga, :categoria, :precio, :fecha_registro, :imagenes)";
+                $stmt = $this->db->prepare($query);
+                $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio, ':fecha_registro' => $fechaCreacion, ':imagenes' => $contenidoImagen));
+            }
+        }        
     }
 
     /*

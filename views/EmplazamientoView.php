@@ -23,7 +23,7 @@
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="<?php echo $emplazamiento['imagenes']; ?>" alt="Imagen ilustrativa">
+                                        <img class="d-block w-100" src="data:<?php echo $tipoImagen; ?>;base64,<?php echo base64_encode($emplazamiento['imagenes']); ?>" alt="Imagen de: <?php $emplazamiento['nombre'] ?>">
                                     </div>
                             </div>
                             <!-- Fin del carousel de imágenes -->
