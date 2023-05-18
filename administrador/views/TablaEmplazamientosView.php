@@ -7,7 +7,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre emplazamiento</th>
+                    <th>Nombre</th>
                     <th>Descripcion corta</th>
                     <th>Descripcion larga</th>
                     <th>Categoria</th>
