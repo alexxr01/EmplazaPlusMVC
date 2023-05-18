@@ -14,7 +14,7 @@
 
                     <!-- Inicio muestra emplazamientos -->
                     <?php foreach ($emplazamientos as $emplazamiento): ?>
-                    <div class="col mb-5">
+                    <div class="col mb-3">
                         <div class="card h-100">
                             <!-- Muestreo de imagenes -->
                             <!-- <img class="card-img-top" src="https://i.imgur.com/fd3zVHm.jpeg" alt="..." /> -->

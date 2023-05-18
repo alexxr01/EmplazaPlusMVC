@@ -7,7 +7,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Nombre emplazamiento</th>
                     <th>Descripcion corta</th>
                     <th>Descripcion larga</th>
                     <th>Categoria</th>
@@ -24,7 +24,8 @@
                     <td><?php echo $emplazamiento['categoria']; ?></td>
                     <td><?php echo $emplazamiento['precio']; ?>€/h</td>
                     <td>
-                        <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        <button type="button" class="btn btn-dark btn-sm" placeholder="Editar datos"><i class="fa-solid fa-pencil"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm" placeholder="Eliminar"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>
                 <?php endforeach; ?>

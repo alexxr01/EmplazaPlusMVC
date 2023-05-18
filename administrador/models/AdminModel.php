@@ -81,13 +81,14 @@ class AdminModel {
             $imagen = $_FILES['imagen']['tmp_name'];
             $comprobacion = getimagesize($imagen);
 
+            // Si la comprobacion es correcta, realizamos lo siguiente:
             if ($comprobacion !== false) {
                 // Cargamos el contenido de la imagen
                 $contenidoImagen = file_get_contents($imagen);
                 // Generamos una variable que almacenará la fecha y hora actual
                 $fechaCreacion = date("Y-m-d H:i:s");
 
-                // Continuar con el procesamiento de la imagen
+                // Continuamos y finalizamos con la inserción de los datos
                 $query = "INSERT INTO emplazamientos (nombre, descripcion_corta, descripcion_larga, categoria, precio, fecha_registro, imagenes) VALUES (:nombre, :descripcion_corta, :descripcion_larga, :categoria, :precio, :fecha_registro, :imagenes)";
                 $stmt = $this->db->prepare($query);
                 $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio, ':fecha_registro' => $fechaCreacion, ':imagenes' => $contenidoImagen));
