@@ -21,3 +21,15 @@ CREATE TABLE emplazamientos (
     `fecha_registro` DATETIME COMMENT 'Fecha y hora en la que se ha registrado el emplazamiento' ,
     `imagenes` MEDIUMBLOB COMMENT 'Imagenes ilustrativas' ,
     PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+/* CREACIÓN TABLA USUARIOS */
+CREATE TABLE usuarios (
+    `id` INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador único para cada usuario en el sistema.' , 
+    `usuario` VARCHAR(100) NOT NULL COMMENT 'Nombre de usuario característico para el usuario.' , 
+    `correo` VARCHAR(400) NOT NULL COMMENT 'Correo electrónico con el que el usuario realizará sus operaciones.' , 
+    `contrasena` VARCHAR(500) NOT NULL COMMENT 'Contraseña privada y encriptada.' , 
+    `descripcion` VARCHAR(500) COMMENT 'Descripcion personalizada del usuario.' , 
+    `permisos` VARCHAR(30) NOT NULL COMMENT 'Permisos con los que cuenta.' , 
+    `fecha_alta` DATETIME NOT NULL COMMENT 'Fecha en la que el usuario se ha dado de alta en el sistema.' , 
+    `avatar` LONGBLOB COMMENT 'Avatar personalizable.' , 
+    PRIMARY KEY (`id`)) ENGINE = InnoDB;

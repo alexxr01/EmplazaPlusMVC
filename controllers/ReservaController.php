@@ -32,10 +32,7 @@ class ReservaController {
           } else {
             // En caso contrario mostramos de nuevo la vista registro.
             require_once 'views/PagoView.php';
-          }
-
-        
-        
+          }        
     }
 }
 

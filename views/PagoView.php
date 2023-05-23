@@ -2,6 +2,7 @@
 $nombre = $_GET['nombre'];
 $descripcion_corta = $_GET['descripcion_corta'];
 $precio = $_GET['precio'];
+$fechaReserva = $_GET['fechaReserva'];
 ?>
 
 <div class="container d-flex justify-content-center mt-5 mb-5">
@@ -94,14 +95,19 @@ $precio = $_GET['precio'];
 
         <div class="col-md-6">
             <center><span>Resumen del pedido</span></center>
+
             <br><br>
             <div class="card">
                 <form class="card-body" action="?action=realizarReserva" method="POST">
+                    <!-- Se almacenan los valores para posteriormente enviarlos -->
+                    <input type="hidden" name="nombreEmplazamiento" value="<?php echo "$nombre"; ?>" />
+                    <input type="hidden" name="precio" value="<?php echo "$precio"; ?>" />
+                    <input type="hidden" name="fechaReserva" value="<?php $_GET['fechaReserva']; ?>" />
+
                     <div class="p-3 d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <!-- Se rellena el campo de nombre emplazamiento -->
-                            <input type="text" disabled="true" class="form-control-plaintext" name="nombreEmplazamiento"
-                                id="nombreEmplazamiento" value="<?php echo "$nombre"; ?>" readonly />
+                            <input type="text" disabled="true" class="form-control-plaintext" value="<?php echo "$nombre"; ?>" readonly />
 
                             <br>
                             <small>
@@ -111,11 +117,8 @@ $precio = $_GET['precio'];
                         </div>
 
                         <!-- Se rellena el campo del precio del emplazamiento -->
-                        <!--
-                        <input type="number" disabled="true" class="form-control-plaintext" name="precio"
-                            id="precio" value="<?php echo "$precio"; ?>" readonly /> -->
-                        <span id="precio" name="precio">Total: <b><?php echo "$precio"; ?>€</b></span>
-                        
+                        <span>Total: <b><?php echo "$precio"; ?>€</b></span>
+
                     </div>
                     <div class="p-3">
                         <button type="submit" class="btn btn-primary btn-block free-button">Realizar pago</button>
@@ -132,6 +135,7 @@ $precio = $_GET['precio'];
         </div>
     </div>
 </div>
+
 
 <!-- Modal que se abrirá para confirmar la cancelacion de la reserva -->
 <div class="modal fade" id="confirmarCancelacion" tabindex="-1" role="dialog" aria-labelledby="modalRegistroLabel"

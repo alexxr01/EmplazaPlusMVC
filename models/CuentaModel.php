@@ -27,9 +27,12 @@ class CuentaModel {
         $correo = $data['correo'];
         $contrasena = password_hash($data['contrasena'], PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO usuarios (usuario, correo, contrasena, permisos, descripcion) VALUES (:usuario, :correo, :contrasena, 'usuario', 'Sin descripcion')";
+        // Obtenemos la fecha y hora actual
+        $fechaAlta = date("Y-m-d H:i:s");
+
+        $query = "INSERT INTO usuarios (usuario, correo, contrasena, descripcion, permisos, fecha_alta, avatar) VALUES (:usuario, :correo, :contrasena, 'Sin descripcion', 'usuario', :fecha_alta, null)";
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':usuario' => $usuario, ':correo' => $correo, ':contrasena' => $contrasena));
+        $stmt->execute(array(':usuario' => $usuario, ':correo' => $correo, ':contrasena' => $contrasena, ':fecha_alta' => $fechaAlta));
     }
 
     /*

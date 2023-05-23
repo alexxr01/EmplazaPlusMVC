@@ -22,12 +22,8 @@ class EmplazamientoController {
     }
 
     public function detallesEmplazamiento() {
-        $emplazamientos = $this->modelo->obtenerDetallesEmplazamiento($_POST['nombreEmplazamiento']);
+        $emplazamientos = $this->modelo->obtenerDetallesEmplazamiento($_POST['idEmplazamiento']);
         require_once 'views/DetallesEmplazamientoView.php';
-    }
-
-    public function realizarReserva() {
-        
     }
 }
 ?>

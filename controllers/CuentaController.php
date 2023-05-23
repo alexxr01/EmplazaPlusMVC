@@ -70,11 +70,6 @@ class CuentaController {
       require 'views/ReestablecerView.php';
     }
   }
-
-  public function tablaMostrarUsuarios() {
-    $usuarios = $this->modelo->tablaMostrarUsuarios();
-    require_once 'views/panelAdministrador/TablaUsuariosView.php';
-  }
   
 }
 ?>

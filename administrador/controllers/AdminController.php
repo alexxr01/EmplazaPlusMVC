@@ -19,22 +19,23 @@ class AdminController {
 
     public function login() {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $usuario = $this->modelo->iniciarsesion($_POST['correo']);
+        $usuario = $this->modelo->iniciarsesionAdministrador($_POST['correo']);
   
         if ($usuario && password_verify($_POST['contrasena'], $usuario['contrasena'])) {
-          echo "<br><center><b>". $_POST['correo']. "</b>, has iniciado sesión. Por favor, espere...</center>";
-          // Redireccionar al principio.
-        header("refresh: 3; url=''"); // Ejecución
+          if ($usuario['permisos'] == 'administrador') {
+            echo '<script language="javascript">alert("Has iniciado sesión correctamente.");</script>';
+            // Redireccionar al principio.
+            header("refresh: 0; url='index'"); // Ejecución
 
-        // SESIÓN
-        session_start(); // Creamos la sesión
-        $_SESSION['usuario'] = $usuario['usuario']; // Almacenamos el usuario
-        $_SESSION['correo'] = $usuario['correo']; // Almacenamos el correo
+            // SESIÓN
+            session_start(); // Creamos la sesión
+            $_SESSION['admin'] = true; // Creamos una variable de sesión para indicar el rol administrador
 
-        } else {
-          echo "<br><center>Las credenciales son incorrectas.<br>Revisa los campos.</center>";
-          header("refresh: 5; url='login'"); // Ejecución
-        }
+            } else {
+              echo '<script language="javascript">alert("No eres administrador, no puedes acceder.");</script>';
+              header("refresh: 0; url='login'"); // Ejecución
+            }
+          }
       } else {
         require 'views/LoginView.php';
       }

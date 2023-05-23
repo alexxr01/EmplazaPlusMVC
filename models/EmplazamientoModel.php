@@ -21,10 +21,14 @@ class EmplazamientoModel {
         return $emplazamientos;
     }
 
-    public function obtenerDetallesEmplazamiento($nombreEmplazamiento) {
-        $query = "SELECT * FROM emplazamientos WHERE nombre = :nombreEmplazamiento";
+    /*
+    Método que nos permite obtener los detalles del emplazamiento
+    en la zona de detalles, así como obtener más información.
+    */
+    public function obtenerDetallesEmplazamiento($idEmplazamiento) {
+        $query = "SELECT * FROM emplazamientos WHERE id = :idEmplazamiento";
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':nombreEmplazamiento' => $nombreEmplazamiento));
+        $stmt->execute(array(':idEmplazamiento' => $idEmplazamiento));
         $emplazamientos = array();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $emplazamientos[] = $row;

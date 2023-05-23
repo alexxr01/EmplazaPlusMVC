@@ -27,21 +27,26 @@ class ReservaModel {
         return $reservas;
     }
 
+    /*
+    Método que nos permite realizar la consulta necesaria para realizar la reserva
+    obteniendo los datos necesarios de la pestaña de pagos.
+    */
     public function realizarReserva($data) {
         $nombreEmplazamiento = $data['nombreEmplazamiento'];
         $precio = $data['precio'];
+        $fechaReserva = $data['fechaReserva'];
 
         $query = "INSERT INTO reservas (id_usuario, id_emplazamiento, fecha_alta, fecha_baja, precio)
         VALUES (
           (SELECT id FROM usuarios WHERE usuario = :usuario),
           (SELECT id FROM emplazamientos WHERE nombre = :nombreEmplazamiento),
-          '2023-05-01', -- fecha de inicio de la reserva
-          '2023-05-07', -- fecha de fin de la reserva
+          :fechaAlta, -- fecha de inicio de la reserva
+          :fechaBaja, -- fecha de fin de la reserva
           :precio -- precio de la reserva
         )";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':precio' => $precio));
+        $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':fechaAlta' => $fechaReserva, ':fechaBaja' => $fechaReserva, ':precio' => $precio));
     }
 
 

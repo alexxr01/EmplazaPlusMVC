@@ -23,34 +23,38 @@
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="data:<?php echo $tipoImagen; ?>;base64,<?php echo base64_encode($emplazamiento['imagenes']); ?>" alt="Imagen de: <?php $emplazamiento['nombre'] ?>">
+                                        <img class="d-block w-100"
+                                            src="data:<?php echo $tipoImagen; ?>;base64,<?php echo base64_encode($emplazamiento['imagenes']); ?>"
+                                            alt="Imagen de: <?php $emplazamiento['nombre'] ?>">
                                     </div>
+                                </div>
+                                <!-- Fin del carousel de imágenes -->
+
                             </div>
-                            <!-- Fin del carousel de imágenes -->
-                            
-                        </div>
                             <!-- Detalles e información del producto -->
                             <form action="?action=detalles" method="POST">
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Nombre del producto -->
-                                    <h5 name="nombreEmplazamiento">
-                                        <input type="text" readonly class="form-control-plaintext text-center fw-bolder" name="nombreEmplazamiento" value="<?php echo $emplazamiento['nombre']; ?>">
-                                    </h5>
-                                    <!-- Descripción del producto -->
-                                    <?php echo $emplazamiento['descripcion_corta']; ?>
-                                    <br><br>
-                                    <!-- Precio del producto -->
-                                    <p>Precio: <b><?php echo $emplazamiento['precio']; ?>€ / h</b></p>
+                                <input type="hidden" name="idEmplazamiento" value="<?php echo $emplazamiento['id']; ?>" />
+
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Nombre del producto -->
+                                        <h5 class="card-title"><b><?php echo $emplazamiento['nombre']; ?></b></h5>
+                                        <hr style="border-top: 1px dashed;">
+                                        <!-- Descripción del producto -->
+                                        <?php echo $emplazamiento['descripcion_corta']; ?>
+                                        <br><br>
+                                        <!-- Precio del producto -->
+                                        <p>Precio: <b><?php echo $emplazamiento['precio']; ?>€ / h</b></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Acciones a realizar para un emplazamiento en concreto -->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <!--<div class="text-center"><a class="btn btn-outline-dark mt-auto">Reservar</a></div>-->
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-outline-dark mt-auto">Mostrar detalles</button>
+                                <!-- Acciones a realizar para un emplazamiento en concreto -->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <!--<div class="text-center"><a class="btn btn-outline-dark mt-auto">Reservar</a></div>-->
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-outline-dark mt-auto">Mostrar
+                                            detalles</button>
+                                    </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                     </div>

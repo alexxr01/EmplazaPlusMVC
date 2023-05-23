@@ -1,12 +1,14 @@
 <?php
-/*
 session_start();
 
-// Verificamos si existe una sesion para saber si se puede entrar en el panel o no
-// o saber si debemos redirigir a la página de logueo.
-if(isset($_SESSION['usuario'])==false) {
-    // Si existe, no se hace nada
-    header("Location: login");
+// Verifica si el usuario ha iniciado sesión como administrador
+if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+  // El usuario es un administrador, muestra el contenido del panel de administrador
+  echo 'Bienvenido al panel de administrador';
+} else {
+  // El usuario no ha iniciado sesión como administrador, redirige a la página de inicio de sesión
+  header('Location: login.php');
+  exit();
 }
 
 // Verifica si se hizo clic en el enlace "Cerrar sesión".
@@ -14,9 +16,8 @@ if(isset($_GET['cerrar_sesion'])) {
     // Destruye la sesión actual.
     session_destroy();
     // Redirige al usuario a la página de inicio de sesión.
-    header("Location: index");
-  }
-*/
+    header("Location: ../");
+}
 ?>
 
 <!DOCTYPE html>

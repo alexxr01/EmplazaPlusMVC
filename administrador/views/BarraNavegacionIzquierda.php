@@ -49,7 +49,7 @@
 
                 <!-- Pestaña para realizar acciones en la sesion -->
                 <div class="sb-sidenav-menu-heading">Usuario</div>
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="?cerrar_sesion=1">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-user-lock"></i></div>
                     Cerrar sesion
                 </a>

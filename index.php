@@ -20,6 +20,17 @@
     <title>Inicio - EmplazaPlus</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="src/img/favicon.png" />
+
+
+    <!-- TODO RELACIONADO CON EL DATAPICKER A LA HORA DE VER DETALLES DEL EMPLAZAMIENTO -->
+    <!--Agrega estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <!-- Datapicker jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Archivo JS del DatePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <!-- Idioma del DatePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
 </head>
 <body>
     <!--
@@ -43,10 +54,6 @@
                     $emplazamientoController->detallesEmplazamiento();
                     break;
 
-                case 'reservar':
-                    $emplazamientoController->reservarEmplazamiento();
-                    break;
-
             // agregar otras acciones según sea necesario
 
             default:
@@ -62,5 +69,16 @@
     <!-- Core theme JS-->
     <script src="src/js/scripts.js"></script>
     <script src="src/js/validacionformulario.js"></script>
+    <!-- Necesario para elegir la fecha de reserva -->
+    <script>
+        // Inicializa el DatePicker al cargar la página
+        $(document).ready(function(){
+            $('#seleccionarFechaReserva').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'es',
+                autoclose: true
+            });
+        });
+    </script>
 </body>
 </html>
