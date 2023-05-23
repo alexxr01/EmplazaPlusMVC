@@ -4,7 +4,7 @@ session_start();
 // Verifica si el usuario ha iniciado sesión como administrador
 if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
   // El usuario es un administrador, muestra el contenido del panel de administrador
-  echo 'Bienvenido al panel de administrador';
+  echo 'Panel administrador';
 } else {
   // El usuario no ha iniciado sesión como administrador, redirige a la página de inicio de sesión
   header('Location: login.php');
@@ -61,13 +61,7 @@ if(isset($_GET['cerrar_sesion'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Registrar nuevo emplazamiento</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Añade un nuevo lugar de reservas para los usuarios.
-                            Los cambios aparecerán reflejados inmediatamente.
-                        </li>
-                    </ol>
-
+                    
                     <!-- Tabla con la lista de usuarios -->
                     <?php
                             $action = isset($_GET['action']) ? $_GET['action'] : 'registroEmplazamiento';

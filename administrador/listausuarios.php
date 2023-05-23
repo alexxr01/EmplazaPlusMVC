@@ -4,7 +4,7 @@ session_start();
 // Verifica si el usuario ha iniciado sesión como administrador
 if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
   // El usuario es un administrador, muestra el contenido del panel de administrador
-  echo 'Bienvenido al panel de administrador';
+  echo 'Panel administrador';
 } else {
   // El usuario no ha iniciado sesión como administrador, redirige a la página de inicio de sesión
   header('Location: login.php');
@@ -78,6 +78,10 @@ if(isset($_GET['cerrar_sesion'])) {
                         case 'tablaMostrarUsuarios':
                         // Llamamos a la función registro que se ubica en el controlador.
                         $adminController->tablaMostrarUsuarios();
+
+                        case 'eliminarUsuario':
+                            // Llamamos al método que nos permite eliminar un usuario determinado.
+                            $adminController->eliminarUsuario();
                     break;
 
                     // Agregamos mas acciones si es necesario. En este caso no.

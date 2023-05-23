@@ -17,14 +17,17 @@
             <tbody>
                 <?php foreach ($usuarios as $usuario): ?>
                 <tr>
-                    <td><?php echo $usuario['usuario']; ?></td>
-                    <td><?php echo $usuario['correo']; ?></td>
-                    <td><?php echo $usuario['permisos']; ?></td>
-                    <td><?php echo $usuario['descripcion']; ?></td>
-                    <td>
-                        <button type="button" class="btn btn-light btn-sm">Detalles</button>
-                        <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
+                    <form action="?action=eliminarUsuario" method="POST">
+                        <input readonly type="hidden" name="id" value="<?php echo $usuario['id']; ?>" />
+                        <td><?php echo $usuario['usuario']; ?></td>
+                        <td><?php echo $usuario['correo']; ?></td>
+                        <td><?php echo $usuario['permisos']; ?></td>
+                        <td><?php echo $usuario['descripcion']; ?></td>
+                        <td>
+                            <button type="button" class="btn btn-light btn-sm">Detalles</button>
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>
+                    </form>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

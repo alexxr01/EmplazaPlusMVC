@@ -33,7 +33,7 @@
                             </div>
                             <!-- Detalles e información del producto -->
                             <form action="?action=detalles" method="POST">
-                                <input type="hidden" name="idEmplazamiento" value="<?php echo $emplazamiento['id']; ?>" />
+                                <input readonly type="hidden" name="idEmplazamiento" value="<?php echo $emplazamiento['id']; ?>" />
 
                                 <div class="card-body p-4">
                                     <div class="text-center">

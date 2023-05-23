@@ -1,9 +1,17 @@
+<h1 class="mt-4">Registrar nuevo emplazamiento</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Añade un nuevo lugar de reservas para los usuarios.
+        Los cambios aparecerán reflejados inmediatamente.
+    </li>
+</ol>
+
 <!-- Contenido de la pagina -->
 <div class="container">
     <div class="text-center mt-5">
         <!-- Formulario -->
         <div class="col-md-4 offset-md-4">
-            <form class="card-body cardbody-color p-lg-5" action="?action=registroEmplazamiento" method="POST" enctype="multipart/form-data">
+            <form class="card-body cardbody-color p-lg-5" action="?action=registroEmplazamiento" method="POST"
+                enctype="multipart/form-data">
                 <div class="mb-3">
                     <input type="text" class="form-control" name="nombre" id="Nombre"
                         placeholder="Nombre emplazamiento">

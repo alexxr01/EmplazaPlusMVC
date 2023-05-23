@@ -61,36 +61,28 @@ if(isset($_GET['cerrar_sesion'])) {
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Lista de reservas realizadas</h1>
-                    <ol class="breadcrumb mb-4">En esta sección podrás ver toda la lista de reservas realizadas por
-                        todos los usuarios dados de alta en el sistema.</ol>
-
-                    <div class="col-3">
-                        <input type="text" class="form-control" id="filtro" placeholder="Buscar por nombre">
-                    </div>
-
-
+                    
                     <!-- Tabla con la lista de usuarios -->
                     <?php
-                    $action = isset($_GET['action']) ? $_GET['action'] : 'tablaMostrarUsuarios';
-                    // Requimos el controlador para poder comenzar a llamar a todas las acciones
-                    require_once ('controllers/AdminController.php');
-                    // Creamos un objeto del controlador para llamarlo posteriormente.
-                    $adminController = new AdminController();
-                    // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
-                    switch ($action) {
-                        case 'tablaMostrarUsuarios':
-                        // Llamamos a la función registro que se ubica en el controlador.
-                        $adminController->mostrarTodasReservas();
-                    break;
+                            $action = isset($_GET['action']) ? $_GET['action'] : 'editarEmplazamiento';
+                            // Requimos el controlador para poder comenzar a llamar a todas las acciones
+                            require_once 'controllers/AdminController.php';
+                            // Creamos un objeto del controlador para llamarlo posteriormente.
+                            $adminController = new AdminController();
+                            // Realizamos un switch en el cual solo llamaremos a la opción 'registro'.
+                            switch ($action) {
+                                case 'editarEmplazamiento':
+                                // Llamamos a la función registro que se ubica en el controlador.
+                                $adminController->editarEmplazamiento();
+                                break;
 
-                    // Agregamos mas acciones si es necesario. En este caso no.
+                            // Agregamos mas acciones si es necesario. En este caso no.
 
-                    // La opción por defecto será la siguiente:
-                    default:
-                    die('La acción no se ha podido llamar correctamente. Hay que revisar.');
-                    }
-                    ?>
+                            // La opción por defecto será la siguiente:
+                            default:
+                                die('La acción no se ha podido llamar correctamente. Hay que revisar.');
+                            }
+                            ?>
 
                 </div>
             </main>
@@ -106,26 +98,6 @@ if(isset($_GET['cerrar_sesion'])) {
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="src/js/datatables-simple-demo.js"></script>
-
-    <!-- Script que permite filtrar por nombres en la tabla -->
-    <script>
-    document.getElementById("filtro").addEventListener("input", function() {
-        var filtro = this.value.toLowerCase();
-        var filas = document.getElementById("tablaReservas").getElementsByTagName("tr");
-
-        for (var i = 0; i < filas.length; i++) {
-            var nombre = filas[i].getElementsByTagName("td")[1];
-            if (nombre) {
-                var contenido = nombre.innerHTML.toLowerCase();
-                if (contenido.indexOf(filtro) > -1) {
-                    filas[i].style.display = "";
-                } else {
-                    filas[i].style.display = "none";
-                }
-            }
-        }
-    });
-    </script>
 </body>
 
 </html>

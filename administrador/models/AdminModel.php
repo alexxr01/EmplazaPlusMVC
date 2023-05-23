@@ -29,6 +29,16 @@ class AdminModel {
         return $usuarios;
     }
 
+    /* FUNCIÓN QUE NOS PERMITE ELIMINAR EL USUARIO QUE QUEREMOS */
+    public function eliminarUsuario($data) {
+        $id = $data['id'];
+
+        // Finalizamos con la consulta preparada
+        $query = "DELETE FROM usuarios WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':id' => $id));
+    }
+
     /* FUNCIÓN QUE NOS PERMITE MOSTRAR TODOS LOS EMPLAZAMIENTOS EN UNA TABLA */
     public function tablaEmplazamientos() {
         $query = "SELECT * FROM emplazamientos";
@@ -84,6 +94,31 @@ class AdminModel {
             $reservas[] = $row;
         }
         return $reservas;
+    }
+
+    /* FUNCIÓN QUE NOS PERMITE EDITAR EMPLAZAMIENTO DESDE EL PANEL */
+    public function editarEmplazamiento($data) {
+        $id = $data['id'];
+        $nombre = $data['nombre'];
+        $descripcion_corta = $data['descripcion_corta'];
+        $descripcion_larga = $data['descripcion_larga'];
+        $categoria = $data['categoria'];
+        $precio = $data['precio'];
+
+        // Continuamos y finalizamos con la inserción de los datos
+        $query = "UPDATE emplazamientos SET nombre = :nombre, descripcion_corta = :descripcion_corta, descripcion_larga = :descripcion_larga, categoria = :categoria, precio = :precio WHERE id = :id;";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':nombre' => $nombre, ':descripcion_corta' => $descripcion_corta, ':descripcion_larga' => $descripcion_larga, ':categoria' => $categoria, ':precio' => $precio, ':id' => $id));     
+    }
+
+    /* FUNCIÓN QUE NOS PERMITE ELIMINAR EL EMPLAZAMIENTO QUE QUEREMOS */
+    public function eliminarEmplazamiento($data) {
+        $id = $data['id'];
+
+        // Finalizamos con la consulta preparada
+        $query = "DELETE FROM emplazamientos WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':id' => $id));
     }
 }
 ?>

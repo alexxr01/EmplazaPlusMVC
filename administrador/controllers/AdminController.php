@@ -35,6 +35,9 @@ class AdminController {
               echo '<script language="javascript">alert("No eres administrador, no puedes acceder.");</script>';
               header("refresh: 0; url='login'"); // Ejecución
             }
+          } else {
+            echo '<script language="javascript">alert("Los datos proporcionados no son correctos. Revísalos.");</script>';
+            header("refresh: 0; url='login'"); // Ejecución
           }
       } else {
         require 'views/LoginView.php';
@@ -62,9 +65,48 @@ class AdminController {
     require_once 'views/TablaUsuariosView.php';
   }
 
+  public function eliminarUsuario() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Enviamos los datos necesarios
+      $this->modelo->eliminarUsuario($_POST);
+      // Mostramos un mensaje en caso de salir todo bien
+      echo '<script language="javascript">alert("El usuario ha sido eliminado.");</script>';
+      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+      echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
+      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+    }
+  }
+
   public function tablaEmplazamientos() {
     $emplazamientos = $this->modelo->tablaEmplazamientos();
     require_once 'views/TablaEmplazamientosView.php';
+  }
+
+  public function editarEmplazamiento() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Enviamos los datos al modelo concretamente a la función registrar
+      $this->modelo->editarEmplazamiento($_POST);
+      // En caso correcto enviamos un mensaje.
+      echo '<script language="javascript">alert("Has editado el emplazamiento correctamente.");</script>';
+      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+      echo '<meta http-equiv="refresh" content="0;url=listaemplazamientos">';
+      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+    } else {
+      // En caso contrario mostramos de nuevo la vista registro.
+      require 'views/EditarEmplazamientoView.php';
+    }
+  }
+
+  public function eliminarEmplazamiento() {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Enviamos los datos necesarios
+      $this->modelo->eliminarEmplazamiento($_POST);
+      // Mostramos un mensaje en caso de salir todo bien
+      echo '<script language="javascript">alert("Emplazamiento eliminado.");</script>';
+      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+      echo '<meta http-equiv="refresh" content="0;url=listaemplazamientos">';
+      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+    }
   }
 
   public function registroEmplazamiento() {
