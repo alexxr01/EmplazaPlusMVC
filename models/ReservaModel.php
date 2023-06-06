@@ -7,15 +7,36 @@ class ReservaModel {
     }
 
     /*
-    Función que nos permite consultar toda la lista de reservas que
-    se ha realizado por parte del usuario que se encuentra logueado.
+    Función que nos permite consultas todas las reservas que el usuario
+    tiene pendiente en un futuro.
     */
-    public function consultarReservas() {
+    public function consultarReservasFuturas() {
         $query = "SELECT u.usuario, e.nombre, r.fecha_alta, r.fecha_baja, r.precio
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
-        WHERE u.usuario = :usuario";
+        WHERE r.fecha_alta > CURDATE() && u.usuario = :usuario";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':usuario' => $_SESSION['usuario']));
+
+        $reservas = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $reservas[] = $row;
+        }
+        return $reservas;
+    }
+
+    /*
+    Función que nos permite consultar todas las reservas que un usuario
+    ya ha reservado en un pasado en el sistema.
+    */
+    public function consultarReservasPasadas() {
+        $query = "SELECT u.usuario, e.nombre, r.fecha_alta, r.fecha_baja, r.precio
+        FROM usuarios u 
+        JOIN reservas r ON u.id = r.id_usuario
+        JOIN emplazamientos e ON r.id_emplazamiento = e.id
+        WHERE r.fecha_alta < CURDATE() && u.usuario = :usuario";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':usuario' => $_SESSION['usuario']));

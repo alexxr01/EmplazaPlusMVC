@@ -18,15 +18,20 @@
 
     <!-- Derivamos de una vista independiente para mostrar exclusivamente la tabla de reservas. -->
     <?php
-    $action = isset($_GET['action']) ? $_GET['action'] : 'mostrarReservasRealizadas';
+    $action = isset($_GET['action']) ? $_GET['action'] : 'mostrarReservasFuturas';
 
     require_once 'controllers/ReservaController.php';
 
     $reservaController = new ReservaController();
 
     switch ($action) {
-        case 'mostrarReservasRealizadas':
-        $reservaController->mostrarReservasRealizadas();
+        case 'mostrarReservasFuturas':
+        $reservaController->mostrarReservasFuturas();
+
+        echo "<br>";
+
+        case 'mostrarReservasPasadas':
+            $reservaController->mostrarReservasPasadas();
         break;
 
         // agregar otras acciones según sea necesario

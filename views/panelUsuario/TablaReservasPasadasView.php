@@ -1,6 +1,6 @@
 <div class="card text-center">
     <div class="card-header">
-        Lista de reservas realizadas por ti
+        Reservas realizadas en el pasado
     </div>
     <div class="card-body">
 
@@ -27,11 +27,5 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-
-        <a href="index" class="btn btn-dark">Realizar nueva reserva</a>
-    </div>
-    <div class="card-footer text-muted">
-        <small>Si ocurre algún error en la lista, por favor contacte con <a
-                href="mailto:soporte@emplazaplus.com">soporte</a>.</small>
     </div>
 </div>

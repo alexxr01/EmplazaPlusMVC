@@ -15,9 +15,14 @@ class ReservaController {
         $this->modelo = new ReservaModel();
     }
 
-    public function mostrarReservasRealizadas() {
-        $reservas = $this->modelo->consultarReservas();
-        require_once 'views/panelUsuario/TablaReservasView.php';
+    public function mostrarReservasFuturas() {
+        $reservas = $this->modelo->consultarReservasFuturas();
+        require_once 'views/panelUsuario/TablaReservasFuturasView.php';
+    }
+
+    public function mostrarReservasPasadas() {
+        $reservas = $this->modelo->consultarReservasPasadas();
+        require_once 'views/panelUsuario/TablaReservasPasadasView.php';
     }
 
     public function realizarReserva() {
