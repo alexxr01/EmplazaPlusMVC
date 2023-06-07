@@ -50,6 +50,33 @@ class AdminModel {
         return $emplazamientos;
     }
 
+    /* FUNCIÓN QUE NOS PERMITE EDITAR EMPLAZAMIENTO DESDE EL PANEL */
+    public function editarUsuario($data) {
+        $id = $data['id'];
+        $usuario = $data['usuario'];
+        $correo = $data['correo'];
+        $contrasena = password_hash($data['contrasena'], PASSWORD_DEFAULT);
+        $descripcion = $data['descripcion'];
+        $permisos = $data['permisos'];
+
+        // Continuamos y finalizamos con la inserción de los datos
+
+        // Comprobamos si la contraseña también se actualiza, ya que no es obligatoria y muchas veces el
+        // usuario quiere conservar la que puso desde un principio.
+
+        // Si está vacía se realiza lo siguiente, es decir, el campo contraseña no se tocaría:
+        if (empty($contrasena)) {
+            $query = "UPDATE usuarios SET usuario = :usuario, correo = :correo, descripcion = :descripcion, permisos = :permisos WHERE id = :id;";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute(array(':usuario' => $usuario, ':correo' => $correo, ':descripcion' => $descripcion, ':permisos' => $permisos, ':id' => $id));
+        } else {
+            // Si no está vacía porque se haya rellenado, se realiza la siguiente consulta:
+            $query = "UPDATE usuarios SET usuario = :usuario, correo = :correo, contrasena = :contrasena, descripcion = :descripcion, permisos = :permisos WHERE id = :id;";
+            $stmt = $this->db->prepare($query);
+            $stmt->execute(array(':usuario' => $usuario, ':correo' => $correo, ':contrasena' => $contrasena, ':descripcion' => $descripcion, ':permisos' => $permisos, ':id' => $id));
+        }
+    }
+
     /* FUNCIÓN QUE NOS PERMITE REGISTRAR UN NUEVO EMPLAZAMIENTO DESDE EL PANEL */
     public function nuevoEmplazamiento($data) {
         $nombre = $data['nombre'];

@@ -1,3 +1,5 @@
+<?php if (!empty($reservas)): ?>
+
 <div class="card text-center">
     <div class="card-header">
         Reservas realizadas en el pasado
@@ -29,3 +31,4 @@
         </table>
     </div>
 </div>
+<?php endif; ?>

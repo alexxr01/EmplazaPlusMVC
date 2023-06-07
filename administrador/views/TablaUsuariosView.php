@@ -24,7 +24,7 @@
                         <td><?php echo $usuario['permisos']; ?></td>
                         <td><?php echo $usuario['descripcion']; ?></td>
                         <td>
-                            <button type="button" class="btn btn-light btn-sm">Detalles</button>
+                            <a href="editarusuario?usuario=<?php echo $usuario['usuario']; ?>&correo=<?php echo $usuario['correo']; ?>&descripcion=<?php echo $usuario['descripcion']; ?>&permisos=<?php echo $usuario['permisos']; ?>&id=<?php echo $usuario['id']; ?>"><button type="button" class="btn btn-light btn-sm">Detalles</button></a>
                             <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         </td>
                     </form>
