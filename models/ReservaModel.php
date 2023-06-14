@@ -11,11 +11,11 @@ class ReservaModel {
     tiene pendiente en un futuro.
     */
     public function consultarReservasFuturas() {
-        $query = "SELECT u.usuario, e.nombre, r.fecha_alta, r.fecha_baja, r.precio
+        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
-        WHERE r.fecha_alta > CURDATE() && u.usuario = :usuario";
+        WHERE r.fecha_hora > CURDATE() && u.usuario = :usuario";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':usuario' => $_SESSION['usuario']));
@@ -32,11 +32,11 @@ class ReservaModel {
     ya ha reservado en un pasado en el sistema.
     */
     public function consultarReservasPasadas() {
-        $query = "SELECT u.usuario, e.nombre, r.fecha_alta, r.fecha_baja, r.precio
+        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
-        WHERE r.fecha_alta < CURDATE() && u.usuario = :usuario";
+        WHERE r.fecha_hora < CURDATE() && u.usuario = :usuario";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute(array(':usuario' => $_SESSION['usuario']));
@@ -55,19 +55,18 @@ class ReservaModel {
     public function realizarReserva($data) {
         $nombreEmplazamiento = $data['nombreEmplazamiento'];
         $precio = $data['precio'];
-        $fechaReserva = $data['fechaReserva'];
+        $fechaHoraReserva = $data['fechaHoraReserva'];
 
-        $query = "INSERT INTO reservas (id_usuario, id_emplazamiento, fecha_alta, fecha_baja, precio)
+        $query = "INSERT INTO reservas (id_usuario, id_emplazamiento, fecha_hora, precio)
         VALUES (
           (SELECT id FROM usuarios WHERE usuario = :usuario),
           (SELECT id FROM emplazamientos WHERE nombre = :nombreEmplazamiento),
-          :fechaAlta, -- fecha de inicio de la reserva
-          :fechaBaja, -- fecha de fin de la reserva
+          :fechaHoraReserva, -- fecha y hora de la reserva
           :precio -- precio de la reserva
         )";
 
         $stmt = $this->db->prepare($query);
-        $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':fechaAlta' => $fechaReserva, ':fechaBaja' => $fechaReserva, ':precio' => $precio));
+        $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':fechaHoraReserva' => $fechaHoraReserva, ':precio' => $precio));
     }
 
 

@@ -37,6 +37,20 @@
                     </div>
                     <br><br>
 
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend col-md-4">
+                            <label class="input-group-text" for="inputGroupSelect01">Selecciona hora</label>
+                        </div>
+                        <select class="form-control" id="seleccionarHoraReserva" style="max-width: 5rem">
+                            <option selected>16:00</option>
+                            <option>17:00</option>
+                            <option>18:00</option>
+                            <option>19:00</option>
+                            <option>20:00</option>
+                            <option>21:00</option>
+                        </select>
+                    </div>
+
                     <div class="card text-center">
                         <div class="card-body">
                             <div class="d-flex">
@@ -45,10 +59,11 @@
                                     <div class="input-group-text">🗓️</div>
                                 </div>
 
-                                <input class="form-control text-center me-3" name="fechaReserva" id="seleccionarFechaReserva" type="text"
-                                    placeholder="Selecciona el día" style="max-width: 11rem" />
+                                <input class="form-control text-center me-3" name="fechaHoraReserva"
+                                    id="seleccionarFechaReserva" type="text" placeholder="Selecciona el día"
+                                    style="max-width: 11rem" />
 
-                                <a href="pago?nombre=<?php echo $emplazamiento['nombre']; ?>&descripcion_corta=<?php echo $emplazamiento['descripcion_corta']; ?>&precio=<?php echo $emplazamiento['precio']; ?>&fechaReserva=2020-12-12">
+                                <a href="pago?nombre=<?php echo $emplazamiento['nombre']; ?>&descripcion_corta=<?php echo $emplazamiento['descripcion_corta']; ?>&precio=<?php echo $emplazamiento['precio']; ?>&fechaHoraReserva="onclick="obtenerFechaHoraReserva()">
                                     <button type="submit" class="btn btn-outline-dark flex-shrink-0">
                                         <i class="bi-cart-fill me-1"></i>
                                         Realizar reserva

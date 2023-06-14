@@ -37,11 +37,8 @@ $precio = $_GET['precio'];
                 <div class="mb-3">
                     <input type="text" class="form-control" name="precio" value="<?php echo "$precio"; ?>">
                 </div>
-                <div class="mb-3">
-                    <input type="file" class="form-control" name="imagen" value="Imagenes ilustrativas">
-                </div>
                 <br>
-                <button type="submit" class="btn btn-dark">Añadir nuevo emplazamiento</button>
+                <button type="submit" class="btn btn-dark">Editar emplazamiento</button>
             </form>
             <br>
         </div>

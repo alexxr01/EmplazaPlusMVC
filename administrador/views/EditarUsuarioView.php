@@ -53,9 +53,10 @@ $permisos = $_GET['permisos'];
                 </div>
                 <br>
                 <button type="submit" class="btn btn-dark">Editar usuario</button>
-                <a href="index"><button class="btn btn-light">Cancelar y salir</button></a>
             </form>
-            <br>
+            <p>o también</p>
+            <a href="index"><button class="btn btn-danger">Cancelar y salir</button></a>
+            <br><br>
         </div>
     </div>
 </div>

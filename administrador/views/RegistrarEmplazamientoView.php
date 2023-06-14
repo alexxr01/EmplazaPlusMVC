@@ -23,7 +23,15 @@
                     <input type="text" class="form-control" name="descripcion_larga" placeholder="Descripción larga">
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="categoria" placeholder="Categoría a la que pertenece">
+                    <select name="categoria" class="form-control">
+                        <option selected>Categoría a la que pertenece:</option>
+                        <option>Ocio</option>
+                        <option>Turismo</option>
+                        <option>Deporte</option>
+                        <option>Infantil</option>
+                        <option>Adultos</option>
+                        <option>Online</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <input type="text" class="form-control" name="precio" placeholder="Precio por horas">

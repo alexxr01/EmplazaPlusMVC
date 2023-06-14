@@ -3,8 +3,7 @@ CREATE TABLE reservas (
     `id` INT NULL AUTO_INCREMENT COMMENT 'Id de la reserva' ,
     `id_usuario` INT NULL COMMENT 'Id del usuario que ha realizado la reserva' ,
     `id_emplazamiento` INT NULL COMMENT 'Id del emplazamiento que se ha elegido' ,
-    `fecha_alta` DATETIME NOT NULL COMMENT 'Fecha y hora en la que se ha reservado' ,
-    `fecha_baja` DATETIME NOT NULL COMMENT 'Fecha y hora en la que la reserva finaliza' ,
+    `fecha_hora` DATETIME NOT NULL COMMENT 'Fecha y hora en la que se ha reservado' ,
     `precio` INT NOT NULL COMMENT 'Precio total que se ha pagado' ,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
@@ -21,6 +20,12 @@ CREATE TABLE emplazamientos (
     `fecha_registro` DATETIME COMMENT 'Fecha y hora en la que se ha registrado el emplazamiento' ,
     `imagenes` MEDIUMBLOB COMMENT 'Imagenes ilustrativas' ,
     PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+/* CREACION TABLA CATEGORÍAS DE EMPLAZAMIENTOS */
+CREATE TABLE categoria_emplazamientos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_categoria VARCHAR(100) NOT NULL
+    );
 
 /* CREACIÓN TABLA USUARIOS */
 CREATE TABLE usuarios (

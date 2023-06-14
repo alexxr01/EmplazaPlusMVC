@@ -10,21 +10,24 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Servicio reservado</th>
-                    <th scope="col">Fecha inicio</th>
-                    <th scope="col">Fecha fin</th>
+                    <th scope="col">Fecha y Hora</th>
                     <th scope="col">Precio</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($reservas as $reserva): ?>
                 <tr>
-                    <th scope="row"><i class="bi bi-calendar-check"></i></th>
+                    <th scope="row"><span class="badge bg-success">Finalizado</span></th>
                     <td><?php echo $reserva['nombre']; ?></td>
-                    <td><?php echo $reserva['fecha_alta']; ?></td>
-                    <td><?php echo $reserva['fecha_baja']; ?></td>
-                    <td><?php echo $reserva['precio']; ?> €</td>
+                    <td><?php echo $reserva['fecha_hora']; ?></td>
+                    <td><?php if ($reserva['precio'] == 0) {
+                        echo "Gratis";
+                    } else {
+                        echo $reserva['precio'] . " €";
+                    }
+                    ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

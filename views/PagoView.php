@@ -2,7 +2,7 @@
 $nombre = $_GET['nombre'];
 $descripcion_corta = $_GET['descripcion_corta'];
 $precio = $_GET['precio'];
-$fechaReserva = $_GET['fechaReserva'];
+$fechaHoraReserva = $_GET['fechaHoraReserva'];
 ?>
 
 <div class="container d-flex justify-content-center mt-5 mb-5">
@@ -102,13 +102,21 @@ $fechaReserva = $_GET['fechaReserva'];
                     <!-- Se almacenan los valores para posteriormente enviarlos -->
                     <input type="hidden" name="nombreEmplazamiento" value="<?php echo "$nombre"; ?>" />
                     <input type="hidden" name="precio" value="<?php echo "$precio"; ?>" />
-                    <input type="hidden" name="fechaReserva" value="<?php $_GET['fechaReserva']; ?>" />
+                    <input type="hidden" name="fechaHoraReserva" value="<?php echo "$fechaHoraReserva"; ?>" />
 
                     <div class="p-3 d-flex justify-content-between">
                         <div class="d-flex flex-column">
                             <!-- Se rellena el campo de nombre emplazamiento -->
-                            <input type="text" disabled="true" class="form-control-plaintext" value="<?php echo "$nombre"; ?>" readonly />
+                            <input type="text" disabled="true" class="form-control-plaintext"
+                                value="<?php echo "$nombre"; ?>" readonly />
 
+                            <br>
+                            <small>
+                                <?php 
+                                $fechaHoraFormateada = date('d/m/Y H:m', strtotime($fechaHoraReserva));
+                                echo "Fecha y hora para reserva: <b>" . $fechaHoraFormateada . "</b>";
+                                ?>
+                            </small>
                             <br>
                             <small>
                                 <span class="badge"

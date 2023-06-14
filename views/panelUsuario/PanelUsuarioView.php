@@ -8,9 +8,9 @@
             <?php
                 echo "<h1 class='font-weight-light'>Bienvenid@ <code><i>" . $_SESSION['usuario'] . "</i></code>!</h1>";
                 ?>
-            <p>Esta es tu zona privada, realiza los cambios que necesites.</p>
+            <p>Esta es tu zona privada, puedes consultar todo lo que necesites.</p>
             <a href="./"><button class="btn btn-dark">Volver al inicio</button></a>
-            <a href=""><button class="btn btn-outline-danger">Dar de baja</button></a>
+            <!--<a href=""><button class="btn btn-outline-danger">Dar de baja</button></a>-->
         </div>
     </div>
 

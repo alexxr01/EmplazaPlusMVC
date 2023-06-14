@@ -79,13 +79,24 @@ class AdminController {
 
   public function editarUsuario() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Enviamos los datos al modelo concretamente a la función registrar
-      $this->modelo->editarUsuario($_POST);
-      // En caso correcto enviamos un mensaje.
-      echo '<script language="javascript">alert("El usuario ha sido actualizado con éxito.");</script>';
-      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
-      echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
-      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      $contrasena = $_POST['contrasena'];
+      if (isset($contrasena) && !empty($contrasena)) {
+        // Enviamos los datos al modelo concretamente a la función registrar
+        $this->modelo->editarUsuarioConContrasena($_POST);
+        // En caso correcto enviamos un mensaje.
+        echo '<script language="javascript">alert("El usuario y contraseña han sido actualizado con éxito.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
+        exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      } else {
+        // Enviamos los datos al modelo concretamente a la función registrar
+        $this->modelo->editarUsuarioSinContrasena($_POST);
+        // En caso correcto enviamos un mensaje.
+        echo '<script language="javascript">alert("El usuario ha sido actualizado con éxito.\nLa contraseña no se ha modificado.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
+        exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      }
     } else {
       // En caso contrario mostramos de nuevo la vista registro.
       require 'views/EditarUsuarioView.php';
