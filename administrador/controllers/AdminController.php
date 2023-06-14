@@ -67,13 +67,19 @@ class AdminController {
 
   public function eliminarUsuario() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Enviamos los datos necesarios
-      $this->modelo->eliminarUsuario($_POST);
-      // Mostramos un mensaje en caso de salir todo bien
-      echo '<script language="javascript">alert("El usuario ha sido eliminado.");</script>';
-      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
-      echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
-      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      try {
+        // Enviamos los datos necesarios
+        $this->modelo->eliminarUsuario($_POST);
+        // Mostramos un mensaje en caso de salir todo bien
+        echo '<script language="javascript">alert("El usuario ha sido eliminado.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
+        exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      } catch (PDOException $e) {
+        echo '<script language="javascript">alert("No puedes eliminar un usuario que tiene reservas asociadas a él/ella.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listausuarios">';
+      }
     }
   }
 
@@ -125,13 +131,19 @@ class AdminController {
 
   public function eliminarEmplazamiento() {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Enviamos los datos necesarios
-      $this->modelo->eliminarEmplazamiento($_POST);
-      // Mostramos un mensaje en caso de salir todo bien
-      echo '<script language="javascript">alert("Emplazamiento eliminado.");</script>';
-      // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
-      echo '<meta http-equiv="refresh" content="0;url=listaemplazamientos">';
-      exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      try {
+        // Enviamos los datos necesarios
+        $this->modelo->eliminarEmplazamiento($_POST);
+        // Mostramos un mensaje en caso de salir todo bien
+        echo '<script language="javascript">alert("Emplazamiento eliminado.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listaemplazamientos">';
+        exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+      } catch (PDOException $e) {
+        echo '<script language="javascript">alert("No puedes eliminar un emplazamiento que se encuentra en alguna reserva.");</script>';
+        // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+        echo '<meta http-equiv="refresh" content="0;url=listaemplazamientos">';
+      }
     }
   }
 
