@@ -29,11 +29,6 @@ class ReservaController {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Enviamos los datos al modelo concretamente a la función registrar
             $reservas = $this->modelo->realizarReserva($_POST);
-            // En caso correcto enviamos un mensaje.
-            echo "<br><center>La reserva se ha realizado correctamente.</center><br>";
-            echo "<center>Te enviaremos al panel de usuario.</center>";
-            // Redireccionar al principio.
-            header("refresh: 3; url='panel'"); // Ejecución
           } else {
             // En caso contrario mostramos de nuevo la vista registro.
             require_once 'views/PagoView.php';
