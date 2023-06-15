@@ -84,7 +84,8 @@
         $('#seleccionarFechaReserva').datepicker({
             format: 'yyyy/mm/dd',
             language: 'es',
-            autoclose: true
+            autoclose: true,
+            startDate: new Date()
         });
     });
     </script>

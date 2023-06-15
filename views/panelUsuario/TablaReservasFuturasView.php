@@ -13,6 +13,7 @@
                     <th scope="col">Servicio reservado</th>
                     <th scope="col">Fecha y Hora</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Anotaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,11 @@
                         echo $reserva['precio'] . " €";
                     }
                     ?></td>
+                    <td><?php if ($reserva['anotaciones'] == null) {
+                        echo "-";
+                    } else {
+                        echo $reserva['anotaciones'];
+                    } ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>

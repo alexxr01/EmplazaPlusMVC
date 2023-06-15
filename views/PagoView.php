@@ -122,6 +122,11 @@ $fechaHoraReserva = $_GET['fechaHoraReserva'];
                                 <span class="badge"
                                     style="background-color: #515A5A">Descripcion</span>&nbsp;<?php echo "$descripcion_corta"; ?>
                             </small>
+                            <br>
+
+                            <textarea class="form-control" name="anotaciones"
+                                placeholder="En caso necesario, puedes añadir una anotación..." rows="2"></textarea>
+
                         </div>
 
                         <!-- Se rellena el campo del precio del emplazamiento -->

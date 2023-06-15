@@ -11,7 +11,7 @@ class ReservaModel {
     tiene pendiente en un futuro.
     */
     public function consultarReservasFuturas() {
-        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio
+        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio, r.anotaciones
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
@@ -32,7 +32,7 @@ class ReservaModel {
     ya ha reservado en un pasado en el sistema.
     */
     public function consultarReservasPasadas() {
-        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio
+        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio, r.anotaciones
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
@@ -56,6 +56,7 @@ class ReservaModel {
         $nombreEmplazamiento = $data['nombreEmplazamiento'];
         $precio = $data['precio'];
         $fechaHoraReserva = $data['fechaHoraReserva'];
+        $anotaciones = $data['anotaciones'];
 
         // Comprobamos si la reserva ya existe
         $query = "SELECT COUNT(*) as count FROM reservas WHERE id_emplazamiento = (SELECT id FROM emplazamientos WHERE nombre = :nombreEmplazamiento) AND fecha_hora = :fechaHoraReserva";
@@ -76,16 +77,17 @@ class ReservaModel {
             return;
 
         } else {
-            $query = "INSERT INTO reservas (id_usuario, id_emplazamiento, fecha_hora, precio)
+            $query = "INSERT INTO reservas (id_usuario, id_emplazamiento, fecha_hora, precio, anotaciones)
             VALUES (
                 (SELECT id FROM usuarios WHERE usuario = :usuario),
                 (SELECT id FROM emplazamientos WHERE nombre = :nombreEmplazamiento),
                 :fechaHoraReserva, -- fecha y hora de la reserva
-                :precio -- precio de la reserva
+                :precio, -- precio de la reserva
+                :anotaciones -- anotacion aportada por el usuario
             )";
 
             $stmt = $this->db->prepare($query);
-            $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':fechaHoraReserva' => $fechaHoraReserva, ':precio' => $precio));
+            $stmt->execute(array(':usuario' => $_SESSION['usuario'], ':nombreEmplazamiento' => $nombreEmplazamiento, ':fechaHoraReserva' => $fechaHoraReserva, ':precio' => $precio, ':anotaciones' => $anotaciones));
         
             // En caso correcto enviamos un mensaje.
             echo "<br><b><center>La reserva se ha realizado correctamente.</center></b>";

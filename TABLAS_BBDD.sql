@@ -5,6 +5,7 @@ CREATE TABLE reservas (
     `id_emplazamiento` INT NULL COMMENT 'Id del emplazamiento que se ha elegido' ,
     `fecha_hora` DATETIME NOT NULL COMMENT 'Fecha y hora en la que se ha reservado' ,
     `precio` INT NOT NULL COMMENT 'Precio total que se ha pagado' ,
+    `anotaciones` VARCHAR(500) COMMENT 'Notas extras proporcionadas por el usuario en caso necesario' ,
     PRIMARY KEY (`id`),
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_emplazamiento) REFERENCES emplazamientos(id)) ENGINE = InnoDB;
