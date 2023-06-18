@@ -11,7 +11,7 @@ class ReservaModel {
     tiene pendiente en un futuro.
     */
     public function consultarReservasFuturas() {
-        $query = "SELECT u.usuario, e.nombre, r.fecha_hora, r.precio, r.anotaciones
+        $query = "SELECT u.usuario, e.nombre, r.id, r.fecha_hora, r.precio, r.anotaciones
         FROM usuarios u 
         JOIN reservas r ON u.id = r.id_usuario
         JOIN emplazamientos e ON r.id_emplazamiento = e.id
@@ -95,6 +95,16 @@ class ReservaModel {
             // Redireccionar al principio.
             header("refresh: 3; url='panel'"); // Ejecución
         }
+    }
+
+    /* FUNCIÓN QUE NOS PERMITE ELIMINAR LA RESERVA QUE QUEREMOS */
+    public function cancelarReserva($data) {
+        $id = $data['id'];
+
+        // Finalizamos con la consulta preparada
+        $query = "DELETE FROM reservas WHERE id = :id";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array(':id' => $id));
     }
 
 

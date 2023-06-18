@@ -34,6 +34,25 @@ class ReservaController {
             require_once 'views/PagoView.php';
           }        
     }
+
+    public function cancelarReserva() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+          try {
+            // Enviamos los datos necesarios
+            $this->modelo->cancelarReserva($_POST);
+            // Mostramos un mensaje en caso de salir todo bien
+            echo '<center><b>La reserva se ha cancelado correctamente.</b></center>';
+            echo '<center>El importe será reembolsado en el método de pago que usaste.</center>';
+            // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+            echo '<meta http-equiv="refresh" content="5;url=panel">';
+            exit(); // Se detiene la ejecución del script para evitar problemas con los encabezados
+          } catch (PDOException $e) {
+            echo '<script language="javascript">alert("Ocurre un error al eliminar la reserva.");</script>';
+            // Redirigimos la pantalla donde aparece una lista de los emplazamientos.
+            echo '<meta http-equiv="refresh" content="0;url=panel">';
+          }
+        }
+      }
 }
 
 ?>

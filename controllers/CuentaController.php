@@ -42,7 +42,7 @@ class CuentaController {
         header("refresh: 3; url='panel'"); // Ejecución
 
         // SESIÓN
-        session_start(); // Creamos la sesión
+        //session_start(); // Creamos la sesión
         $_SESSION['usuario'] = $usuario['usuario']; // Almacenamos el usuario
         $_SESSION['correo'] = $usuario['correo']; // Almacenamos el correo
 

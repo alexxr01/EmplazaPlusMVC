@@ -14,10 +14,6 @@
                         <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
                         <small class="form-text text-muted">Hey, ¡no compartas tu contraseña con nadie!</small>
                     </div>
-                    <div class="form-switch mb-3">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="mantenersesion">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">&nbsp;&nbsp; Mantener sesión iniciada</label>
-                    </div>
                     <br>
                     <button type="submit" class="btn btn-dark">Iniciar sesion</button>
                 </form>

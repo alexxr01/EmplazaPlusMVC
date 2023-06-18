@@ -20,7 +20,7 @@
                 <tr>
                     <form action="?action=eliminarEmplazamiento" method="POST">
                         <input readonly type="hidden" name="id" value="<?php echo $emplazamiento['id']; ?>" />
-                        
+
                         <td><?php echo $emplazamiento['nombre']; ?></td>
                         <td><?php echo $emplazamiento['descripcion_corta']; ?></td>
                         <td><?php echo $emplazamiento['descripcion_larga']; ?></td>

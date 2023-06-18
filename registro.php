@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+// Verificamos si existe una sesion para saber si se puede entrar en el panel o no
+// o saber si debemos redirigir a la página de logueo.
+if(isset($_SESSION['usuario']) == true) {
+    // Enviamos un mensaje de alerta
+    echo '<script language="javascript">alert("Ya tienes una sesión iniciada, no puedes registrarte.");</script>';
+    // Si existe, no se hace nada
+    echo '<meta http-equiv="refresh" content="0;url=panel">';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

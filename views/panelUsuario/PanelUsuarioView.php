@@ -26,7 +26,10 @@
 
     switch ($action) {
         case 'mostrarReservasFuturas':
-        $reservaController->mostrarReservasFuturas();
+            $reservaController->mostrarReservasFuturas();
+
+        case 'cancelarReserva':
+            $reservaController->cancelarReserva();
 
         echo "<br>";
 
@@ -43,5 +46,5 @@
 
     <br><br>
 
-    </div>
+</div>
 </div>

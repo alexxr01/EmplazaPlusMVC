@@ -48,10 +48,6 @@ class CuentaModel {
         $stmt->execute(array(':correo' => $correo, ':contrasenanueva' => $contrasenanueva));
     }
 
-    public function darBaja($data) {
-        // Para desarrollar más tarde...
-    }
-
     public function tablaMostrarUsuarios() {
         $query = "SELECT * FROM usuarios";
         $stmt = $this->db->query($query);
